@@ -33,6 +33,9 @@
         } else if (filename === 'home') {
             contentDiv.innerHTML = '<?php include './pages/home/home.php'; ?>';
 
+        } else if (filename === 'secuIp') {
+            contentDiv.innerHTML = '<?php include './site/controllers/SecuIpController.php'; ?>';
+
         } else {
             contentDiv.innerHTML = '<?php include './pages/notFound/notFound.php'; ?>';
         }
