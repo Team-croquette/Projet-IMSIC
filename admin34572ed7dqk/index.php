@@ -9,10 +9,17 @@ foreach(glob('./classes/*.php') as $fileName){
     }
 }
 
-if (!isset($_SESSION['user_id'])) {
+foreach(glob('./enum/*.php') as $fileName){
+
+    if (!str_contains($fileName,'index.php')) {
+        require_once $fileName;
+    }
+}
+
+if (!isset($_SESSION['token']) && $_SESSION['token'] == (new LoginAdminController())->getToken($_SESSION['login'])) {
     header('Location: ./login/index.php');
     die;
 }
 
-$controller = AdminControllerCore::getInstanceByName('IndexAdminController');
+$controller = AdminControllerCore::getInstanceByName('index');
 $controller->run();

@@ -1,7 +1,7 @@
 <?php 
 
 class LoginAdminController extends AdminControllerCore{
-    protected string $name;
+    private array $errors = [];
 
     public function __construct()
     {
@@ -10,12 +10,57 @@ class LoginAdminController extends AdminControllerCore{
 
     public function run(): bool
     {
-        $this->toto();
-        $this->renderTemplate();
+        if(key_exists('token', $_SESSION)){
+            header('Location: ../index.php');
+            die;
+        }
+        if(key_exists('submit', $_POST)){
+            $this->proccessForm();
+        }
+        $this->renderTemplate($this->getTemplateVariables());
         return true;
     }
 
-    private function toto(){
-        return 'toto';
+    private function getTemplateVariables():array
+    {
+        $form = $this->getForm();
+        return [
+            'form' => $form,
+            'errors' => $this->errors,
+        ];
+    }
+
+    private function getForm():string
+    {
+        $formBuilder = new FormBuilder();
+        $formBuilder
+            ->add('login', InputTypeEnum::TEXT,true)
+            ->add('password', InputTypeEnum::PASSWORD,true)
+            ->add('submit', InputTypeEnum::SUBMIT,true,'Se connecter');
+
+        return $formBuilder->renderForm();
+    }
+
+    private function proccessForm(){
+
+        try {
+            /* changer ce if par quelque chose qui regarde dans la bd */
+            if (!(isset($_POST['login'])) || !(isset($_POST['password']) && password_verify($_POST['password'],'$2y$10$qC/qndTH5RspkCY/HYAsrOC4REl7YYNuz6u/2fjBmkiivIFaxc/e2')) ) {
+                throw new Exception("L'identifiant ou le mot de passe est incorrect. Veuillez réessayer.", 1);
+            }
+
+            $_SESSION['token'] = $this->getToken($_POST['login']);
+            $_SESSION['login'] = $_POST['login'];
+
+            header('Location: ../index.php');
+            die;
+        } catch (\Throwable $th) {
+            $this->errors[] = $th->getMessage();
+        }
+    }
+
+    public function getToken(string $userLogin):string
+    {
+        return md5(base64_encode($userLogin.'_dclskc09_'.date('d-m-Y')));
     }
 }
