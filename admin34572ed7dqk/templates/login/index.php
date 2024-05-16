@@ -3,5 +3,16 @@
 
 </html>
 <body>
-    <h1>WJKLHAIUgbihxs</h1>
+    <ul class="alert-error">
+        <?php
+        foreach ($errors as $message) {
+            ?>
+        <li>
+            <?= $message ?>
+        </li>
+            <?php
+        }
+        ?>
+    </ul>
+<?= $form ?>
 </body>
