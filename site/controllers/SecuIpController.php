@@ -26,5 +26,6 @@ class SecuIpController extends AdminControllerCore
     {
         $secu = new \SecuIpModel();
         return $secu->ipUsed($_SERVER['REMOTE_ADDR']);
+        echo "client : " . $_SERVER['REMOTE_ADDR'];
     }
 }

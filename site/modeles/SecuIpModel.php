@@ -11,7 +11,7 @@ class SecuIpModel extends ModelCore {
         mysqli_stmt_close($queryReponse);
 
         echo ($result);
-        return false;
+        return $result;
     }
 
 }

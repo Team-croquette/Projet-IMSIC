@@ -1,7 +1,5 @@
 <?php 
 
-session_start();
-
 foreach(glob('./classes/*.php') as $fileName){
 
     if (!str_contains($fileName,'index.php')) {
@@ -9,10 +7,5 @@ foreach(glob('./classes/*.php') as $fileName){
     }
 }
 
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ./login/index.php');
-    die;
-}
-
-$controller = AdminControllerCore::getInstanceByName('IndexController');
+$controller = ControllerCore::getInstanceByName('SecuIp');
 $controller->run();
