@@ -8,6 +8,7 @@ class FormInput{
 
     public function __construct(   
         private string $name,
+        private string $label,
         private InputTypeEnum $type,
         private bool $required,
         private string $defaultValue = '',
@@ -29,6 +30,13 @@ class FormInput{
         $prefix = '';
         $innerHtml = '';
         $suffix = '>';
+        $label = '';
+        
+        if ($this->label != '') {
+            $label = '<label for="'. $this->name .'" class="admin-form_label">'.$this->label.'</label>';
+
+        }
+        
 
         switch ($this->type) {         
             case InputTypeEnum::ENUM :
@@ -59,7 +67,7 @@ class FormInput{
         }
 
         $value = isset($_POST[$this->name]) ? $_POST[$this->name] : $this->defaultValue;
-        $html = $prefix . 'name="'.$this->name.'"' . ' value="'.$value.'"' . $attributes . $innerHtml . $suffix;
+        $html = '<div class="admin-form_group">'.$label . $prefix . 'name="'.$this->name.'"' . ' value="'.$value.'"' . $attributes . $innerHtml . $suffix.'</div>';
 
         return $html;
     }

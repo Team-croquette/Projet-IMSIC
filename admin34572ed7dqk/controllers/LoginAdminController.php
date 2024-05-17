@@ -34,9 +34,9 @@ class LoginAdminController extends AdminControllerCore{
     {
         $formBuilder = new FormBuilder();
         $formBuilder
-            ->add('login', InputTypeEnum::TEXT,true)
-            ->add('password', InputTypeEnum::PASSWORD,true)
-            ->add('submit', InputTypeEnum::SUBMIT,true,'Se connecter');
+            ->add('login','Identifiant', InputTypeEnum::TEXT,true)
+            ->add('password','Mot de passe', InputTypeEnum::PASSWORD,true)
+            ->add('submit','', InputTypeEnum::SUBMIT,true,'Se connecter');
 
         return $formBuilder->renderForm();
     }
