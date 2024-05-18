@@ -25,6 +25,7 @@ class LoginAdminController extends AdminControllerCore{
     {
         $form = $this->getForm();
         return [
+            'adminRoot' => str_replace(ROOT_PATH,'',ADMIN_PATH),
             'form' => $form,
             'errors' => $this->errors,
         ];
