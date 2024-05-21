@@ -2,7 +2,7 @@
 
 $basePath = explode('admin34572ed7dqk',dirname(__FILE__))[0];
 $basePath = str_replace('\\','/',$basePath);
-define('ROOT_PATH',$basePath);
+define('BASE_PATH',$basePath);
 define('ADMIN_PATH',$basePath.'/admin34572ed7dqk/');
 
 class AdminControllerCore{
