@@ -8,22 +8,21 @@ class SecuIpController extends ControllerCore
 {
     protected string $name;
 
-    public function run(): bool
+    public function run() : bool
     {
         if ($this->ipUsed()) {
             echo '<script type="text/javascript">window.alert("Ip déjà utilisée");</script>';
 
-            header('Location: ../../index.php'); //renvoie vers l'acceuil
+            return true;
+            //header('Location: ' . SITE_PATH . 'index.php'); //renvoie vers l'acceuil
         }
         else {
             $secu = new \SecuIpModel();
             $secu->addIp($_SERVER['REMOTE_ADDR']);
-            header('Location: ../'); // renvoie vers le questionnaire
-        }
-        //$this->renderTemplate();
-        die;
-        return true;
 
+            //header('Location: ../'); // renvoie vers le questionnaire
+            return false;
+        }
     }
 
     private function ipUsed(): bool

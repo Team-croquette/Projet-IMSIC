@@ -47,8 +47,12 @@ class ControllerCore{
         $this->name = $name;
     }
 
-    protected function renderTemplate(): void
+    protected function renderTemplate($variables = []): void
     {
+        foreach($variables as $varName => $varValue){
+            $$varName = $varValue;
+        }
+
         if ($this->name == null || $this->template == null) {
             require SITE_PATH . '/templates/index/index.php';
         } else {
