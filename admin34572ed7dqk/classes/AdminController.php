@@ -32,6 +32,8 @@ class AdminControllerCore{
         foreach($variables as $varName => $varValue){
             $$varName = $varValue;
         }
+        $adminRoot = explode('www/',ADMIN_PATH,2)[1];
+        $templatesRoot = $adminRoot.'templates/';
         require ADMIN_PATH.'/templates/' . $this->name . '/' . $this->template;
     }
 }

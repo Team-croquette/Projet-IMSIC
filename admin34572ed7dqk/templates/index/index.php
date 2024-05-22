@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="FR">
 <body>
-    <h1>COnnecté</h1>
-    <a href="<?= $adminRoot ?>/disconnect">Déconnexion</a>
+    <?php require_once '../'. $templatesRoot .'header.php'; ?>
 </body>
 </html>

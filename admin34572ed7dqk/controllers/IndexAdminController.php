@@ -18,15 +18,7 @@ class IndexAdminController extends AdminControllerCore{
             header('Location: ./login/');
             die;
         }
-        $this->renderTemplate($this->getTemplateVariables());
+        $this->renderTemplate();
         return true;
     } 
-
-    private function getTemplateVariables():array
-    {
-        $adminRoot = explode('www/',ADMIN_PATH,2)[1];
-        return [
-            'adminRoot' => $adminRoot,
-        ];
-    }
 }
