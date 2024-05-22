@@ -25,6 +25,7 @@ class LoginAdminController extends AdminControllerCore{
     {
         $form = $this->getForm();
         return [
+            'adminRoot' => str_replace(BASE_PATH,'',ADMIN_PATH),
             'form' => $form,
             'errors' => $this->errors,
         ];
@@ -34,9 +35,9 @@ class LoginAdminController extends AdminControllerCore{
     {
         $formBuilder = new FormBuilder();
         $formBuilder
-            ->add('login', InputTypeEnum::TEXT,true)
-            ->add('password', InputTypeEnum::PASSWORD,true)
-            ->add('submit', InputTypeEnum::SUBMIT,true,'Se connecter');
+            ->add('login','Identifiant', InputTypeEnum::TEXT,true)
+            ->add('password','Mot de passe', InputTypeEnum::PASSWORD,true)
+            ->add('submit','', InputTypeEnum::SUBMIT,true,'Se connecter');
 
         return $formBuilder->renderForm();
     }
@@ -45,7 +46,7 @@ class LoginAdminController extends AdminControllerCore{
 
         try {
             /* changer ce if par quelque chose qui regarde dans la bd */
-            if (!(isset($_POST['login'])) || !(isset($_POST['password']) && password_verify($_POST['password'],'$2y$10$qC/qndTH5RspkCY/HYAsrOC4REl7YYNuz6u/2fjBmkiivIFaxc/e2')) ) {
+            if (!(isset($_POST['login']) && isset($_POST['password']) && $this->accountExist($_POST['login'],$_POST['password']))) {
                 throw new Exception("L'identifiant ou le mot de passe est incorrect. Veuillez réessayer.", 1);
             }
 
@@ -62,5 +63,10 @@ class LoginAdminController extends AdminControllerCore{
     public function getToken(string $userLogin):string
     {
         return md5(base64_encode($userLogin.'_dclskc09_'.date('d-m-Y')));
+    }
+
+    private function accountExist($login,$password):bool
+    {
+        return (new UserModel())->userExist($login,$password);
     }
 }

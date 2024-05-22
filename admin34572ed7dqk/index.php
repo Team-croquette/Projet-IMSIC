@@ -15,10 +15,17 @@ foreach(glob('./enum/*.php') as $fileName){
         require_once $fileName;
     }
 }
+foreach(glob('./modeles/*.php') as $fileName){
 
-if (!isset($_SESSION['token']) && $_SESSION['token'] == (new LoginAdminController())->getToken($_SESSION['login'])) {
-    header('Location: ./login/index.php');
-    die;
+    if (!str_contains($fileName,'index.php')) {
+        require_once $fileName;
+    }
+}
+foreach(glob('./controllers/*.php') as $fileName){
+
+    if (!str_contains($fileName,'index.php')) {
+        require_once $fileName;
+    }
 }
 
 $controller = AdminControllerCore::getInstanceByName('index');

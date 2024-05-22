@@ -8,9 +8,9 @@ class FormBuilder{
     private string $method = 'POST';
     private string $class = '';
    
-    public function add(string $name, InputTypeEnum $type, bool $required = false, string $defaultValue = '', array $extra = []):FormBuilder
+    public function add(string $name, string $label, InputTypeEnum $type, bool $required = false, string $defaultValue = '', array $extra = []):FormBuilder
     {
-        $this->inputs[] = new FormInput($name, $type,$required,$defaultValue,$extra);
+        $this->inputs[] = new FormInput($name, $label, $type,$required,$defaultValue,$extra);
         return $this;
     }
 
