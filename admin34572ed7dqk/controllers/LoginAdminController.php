@@ -11,7 +11,7 @@ class LoginAdminController extends AdminControllerCore{
     public function run(): bool
     {
         if(key_exists('token', $_SESSION)){
-            header('Location: ../index.php');
+            header('Location: ../');
             die;
         }
         if(key_exists('submit', $_POST)){
@@ -46,7 +46,6 @@ class LoginAdminController extends AdminControllerCore{
     private function proccessForm(){
 
         try {
-            /* changer ce if par quelque chose qui regarde dans la bd */
             if (!(isset($_POST['login']) && isset($_POST['password']) && $this->accountExist($_POST['login'],$_POST['password']))) {
                 throw new Exception("L'identifiant ou le mot de passe est incorrect. Veuillez réessayer.", 1);
             }
