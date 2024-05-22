@@ -1,31 +1,35 @@
 <?php
 
-namespace controllers;
-use AdminControllerCore;
-require_once "../modeles/SecuIpModel.php";
 
-class SecuIpController extends AdminControllerCore
+require_once SITE_PATH . "modeles/SecuIpModel.php";
+$secu = new \SecuIpModel();
+
+class SecuIpController extends ControllerCore
 {
     protected string $name;
 
     public function run(): bool
     {
         if ($this->ipUsed()) {
-            //pop up en mode questionnaire deja fait
+            echo '<script type="text/javascript">window.alert("Ip déjà utilisée");</script>';
+
             header('Location: ../../index.php'); //renvoie vers l'acceuil
         }
         else {
-            // enregistre l'ip dans la bdd
+            $secu = new \SecuIpModel();
+            $secu->addIp($_SERVER['REMOTE_ADDR']);
             header('Location: ../'); // renvoie vers le questionnaire
         }
+        //$this->renderTemplate();
         die;
         return true;
+
     }
 
     private function ipUsed(): bool
     {
         $secu = new \SecuIpModel();
         return $secu->ipUsed($_SERVER['REMOTE_ADDR']);
-        echo "client : " . $_SERVER['REMOTE_ADDR'];
+        var_dump("client : " . $_SERVER['REMOTE_ADDR']);
     }
 }
