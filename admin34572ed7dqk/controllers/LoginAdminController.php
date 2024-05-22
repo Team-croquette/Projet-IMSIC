@@ -25,6 +25,9 @@ class LoginAdminController extends AdminControllerCore{
     {
         $form = $this->getForm();
         $adminRoot = explode('www/',ADMIN_PATH,2)[1];
+        if($adminRoot[0] !== '/'){
+            $adminRoot = '/'.$adminRoot;
+        }
         return [
             'adminRoot' => $adminRoot,
             'form' => $form,
