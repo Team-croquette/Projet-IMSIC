@@ -24,8 +24,9 @@ class LoginAdminController extends AdminControllerCore{
     private function getTemplateVariables():array
     {
         $form = $this->getForm();
+        $adminRoot = explode('www/',ADMIN_PATH,2)[1];
         return [
-            'adminRoot' => str_replace(BASE_PATH,'',ADMIN_PATH),
+            'adminRoot' => $adminRoot,
             'form' => $form,
             'errors' => $this->errors,
         ];
