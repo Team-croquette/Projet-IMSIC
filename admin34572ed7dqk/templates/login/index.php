@@ -4,6 +4,8 @@
 </html>
 
 <body>
+    <?php require_once '../../'.$templatesRoot .'header.php'; ?>
+
     <div class="content">
         <ul class="alert-error">
             <?php
