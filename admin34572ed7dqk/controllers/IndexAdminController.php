@@ -32,7 +32,24 @@ class IndexAdminController extends AdminControllerCore{
 
         if ($owner) {
             $vars['adminUsers'] =  (new UserModel())->getAllUser();
+            $vars['addUserForm'] =  $this->getForm();
         }
         return $vars ;
+    }
+
+    private function getForm():string
+    {
+        $formBuilder = new FormBuilder();
+        $formBuilder
+            ->setAction('./user/index.php')
+            ->setMethod('GET')
+            ->setClass('form')
+            ->add('login','Identifiant', InputTypeEnum::TEXT,true)
+            ->add('password','Mot de passe', InputTypeEnum::PASSWORD,true)
+            ->add('confirm_password','Confirmation mot de passe', InputTypeEnum::PASSWORD,true)
+            ->add('action','', InputTypeEnum::HIDDEN,true,'add')
+            ->add('submit','', InputTypeEnum::SUBMIT,true,'Créer');
+
+        return $formBuilder->renderForm();
     }
 }

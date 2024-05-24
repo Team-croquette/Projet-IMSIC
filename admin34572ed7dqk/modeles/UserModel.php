@@ -65,4 +65,17 @@ class UserModel extends ModelCore{
 
         return true;
     }
+
+    public function addUser(string $login, string $password):bool
+    {
+        if ($login == $_SESSION['login']) {
+            return false;
+        }
+        $users = [];
+        $dbLink = $this->connectBd();
+        $query = $dbLink->prepare('INSERT INTO COMPTES (`identitifiant`,`mdp`) VALUES (?,?)');
+        $query->bind_param('s',$login,$password);
+
+        return $query->execute();;
+    }
 }
