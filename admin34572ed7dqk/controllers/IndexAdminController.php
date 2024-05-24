@@ -20,5 +20,5 @@ class IndexAdminController extends AdminControllerCore{
         }
         $this->renderTemplate();
         return true;
-    }
+    } 
 }
