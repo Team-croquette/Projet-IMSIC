@@ -13,12 +13,54 @@
 /* Style global de l'application */
 
 header {
-    background: var(--background);
-    color: var(--black);
-    padding: 10px 0;
-    text-align: center;
-    height: 2rem;
-    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0 3rem;
+        font-size: 18px;
+        align-items: center;
+
+        img {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        #question {
+            background-color: var(--black);
+            color: var(--white);
+            width: 8rem;
+            height: 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+    }
+
+    #left-part {
+        font-weight: 600;
+    }
+
+    #right-part {
+        gap: 2rem;
+
+        #disconnect {
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--black);
+        }
+
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
 }
 
 body {
@@ -32,6 +74,10 @@ body {
 
 
 /* Style de la page admin */
+.alert-error {
+    padding: 0;
+    margin: 0;
+}
 
 #adminConnect {
     background: var(--modalBackground);
