@@ -71,10 +71,12 @@ class UserModel extends ModelCore{
         if ($login == $_SESSION['login']) {
             return false;
         }
-        $users = [];
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        
         $dbLink = $this->connectBd();
-        $query = $dbLink->prepare('INSERT INTO COMPTES (`identitifiant`,`mdp`) VALUES (?,?)');
-        $query->bind_param('s',$login,$password);
+        $query = $dbLink->prepare('INSERT INTO COMPTES (`identifiant`,`mdp`,`date`) VALUES (?,?, NOW())');
+        $query->bind_param('ss',$login,$password);
 
         return $query->execute();;
     }

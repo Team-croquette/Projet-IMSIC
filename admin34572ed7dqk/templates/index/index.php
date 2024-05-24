@@ -29,9 +29,7 @@
 
     <?php } ?>
     <div class="modal" data-type="addUser">
-        <form>
-            <?= $addUserForm ?>
-        </form>
+        <?= $addUserForm ?>
     </div>
 </body>
 </html>
