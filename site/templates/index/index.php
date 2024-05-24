@@ -12,7 +12,7 @@
 <?php require $header; ?>
 
 <!-- Body -->
-<div id="content"><?= $info; ?></div>
+<div id="content"><?= $info ?></script></div>
 
 <!-- Footer -->
 <?php require $footer; ?>

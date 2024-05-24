@@ -18,25 +18,46 @@ class SecuIpController extends ControllerCore
 
     public function run() : bool
     {
-        if ($this->ipUsed()) {
-            $this->info = '<script type="text/javascript">window.alert("Ip déjà utilisée");</script>';
-            return true;
-        }
-        else {
-            $secu = new \SecuIpModel();
-            $secu->addIp($this->getIp()[0]);
-            $this->info = $secu->countIpInServ() . ' appareil(s) a(ont) déjà éssayé de se connecté depuis votre réseaux. \n' . 5-$secu->countIpInServ() . 'connexions restante(s).';
-            return false;
-        }
-    }
-
-    private function ipUsed(): bool
-    {
-        $secu = new \SecuIpModel();
         $ipRouter = $this->getIp()[1];
         $ipClient = $this->getIp()[0];
+        $resultIpFromRouter = $this->toManyIpFromRouter($ipRouter);
+        var_dump($resultIpFromRouter['case']);
+        if ($this->ipUsed($ipRouter, $ipClient)) {
+            $this->info = 'Ip déjà utilisée';
+            return true;
+        } elseif ($resultIpFromRouter['case'] < 2) {
+            $secu = new \SecuIpModel();
+            $secu->addIp($ipRouter, $ipClient);
+            $this->info = $resultIpFromRouter['info'];
+            return false;
+        } elseif ($resultIpFromRouter['case']==2) {
+            $this->info = $resultIpFromRouter['info'];
+            return true;
+        } else {
+            $secu = new \SecuIpModel();
+            $secu->addIp($ipRouter, $ipClient);
+            $this->info = $resultIpFromRouter['info'];
+            return false;
+        }
+        die;
+    }
+
+    private function ipUsed($ipRouter, $ipClient): bool
+    {
+        $secu = new \SecuIpModel();
         return $secu->ipUsed($ipRouter, $ipClient);
-        //var_dump("client : " . $this->getIp()[1]);
+    }
+
+    private function toManyIpFromRouter($ipRouter) {
+        $secu = new \SecuIpModel();
+        $ipInRouter = $secu->countIpInServ($ipRouter);
+        if ($ipInRouter<5) {
+            return ["case"=> 0, "info" => $ipInRouter . " appareil(s) a(ont) déjà éssayé de se connecté depuis votre réseaux. \n" . 5 - $ipInRouter . 'connexions restante(s).'];
+        } elseif ($ipInRouter == 5) {
+            return ["case"=> 1, "info" => $ipInRouter . " appareils ont déjà éssayé de se connecté depuis votre réseaux. \n Ceci sera votre dernière tentative."];
+        } else {
+            return ["case"=> 2, "info" => 'Nous avons déjà recu le nombres de tentatives maximum pour ce questionnaire depuis votre réseaux.'];
+        }
     }
 
     private function getIp()
@@ -60,7 +81,6 @@ class SecuIpController extends ControllerCore
         } else {
             $ips[1] = "Was not able to get router ip";
         }
-
         return $ips;
     }
 }
