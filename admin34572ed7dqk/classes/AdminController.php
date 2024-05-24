@@ -53,6 +53,9 @@ class AdminControllerCore{
             $$varName = $varValue;
         }
         $adminRoot = explode('www/',ADMIN_PATH,2)[1];
+        if($adminRoot[0] !== '/'){
+            $adminRoot = '/'.$adminRoot;
+        }
         $templatesRoot = $adminRoot.'templates/';
         require ADMIN_PATH.'/templates/' . $this->name . '/' . $this->template;
     }
