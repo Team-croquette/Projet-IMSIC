@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    <?php require_once '../../'.$templatesRoot .'header.php'; ?>
+    <?php require_once $templatesRoot .'header.php'; ?>
 
     <div class="content">
         <ul class="alert-error">

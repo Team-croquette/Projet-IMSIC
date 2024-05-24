@@ -56,7 +56,7 @@ class AdminControllerCore{
         if($adminRoot[0] !== '/'){
             $adminRoot = '/'.$adminRoot;
         }
-        $templatesRoot = $adminRoot.'templates/';
+        $templatesRoot = ADMIN_PATH.'/templates/';
         require ADMIN_PATH.'/templates/' . $this->name . '/' . $this->template;
     }
 }

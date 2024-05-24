@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="FR">
 <body>
-    <?php require_once '../'. $templatesRoot .'header.php'; ?>
+    <?php require_once $templatesRoot .'header.php'; ?>
 
     <?php if ($owner) {?>
         <div class="gestion">
