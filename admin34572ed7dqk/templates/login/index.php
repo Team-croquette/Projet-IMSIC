@@ -7,14 +7,12 @@
 
 </head>
 <body>
+    <?php require_once '../../'.$templatesRoot .'header.php'; ?>
 
-<header>
-    HEADER
-</header>
-<div class="content">
-    <ul class="alert-error">
-        <?php
-        foreach ($errors as $message) {
+    <div class="content">
+        <ul class="alert-error">
+            <?php
+            foreach ($errors as $message) {
             ?>
             <li>
                 <?= $message; ?>

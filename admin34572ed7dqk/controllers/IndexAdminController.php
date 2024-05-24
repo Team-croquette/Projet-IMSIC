@@ -18,7 +18,21 @@ class IndexAdminController extends AdminControllerCore{
             header('Location: ./login/');
             die;
         }
-        $this->renderTemplate();
+        $this->renderTemplate($this->getTemplateVariables());
         return true;
     } 
+
+    private function getTemplateVariables():array{
+        
+        $owner = (new UserModel())->isOwner($_SESSION['login']);
+        $vars = [
+            'title' => 'Espace administrateur',
+            'owner' => $owner,
+        ];
+
+        if ($owner) {
+            $vars['adminUsers'] =  (new UserModel())->getAllUser();
+        }
+        return $vars ;
+    }
 }

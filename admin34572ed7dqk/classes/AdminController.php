@@ -5,6 +5,26 @@ $basePath = str_replace('\\','/',$basePath);
 define('BASE_PATH',$basePath);
 define('ADMIN_PATH',$basePath.'/admin34572ed7dqk/');
 
+if (!file_exists(BASE_PATH.'/.env')) {
+    throw new Exception("Le fichier .env n'existe pas.");
+}
+
+$file = file(BASE_PATH.'/.env');
+foreach ($file as $line) {
+  if (strpos(trim($line), '#') === 0) {
+    continue;
+  }
+
+  list($key, $value) = explode(':', $line, 2);
+  $key = trim($key);
+  $value = trim($value);
+
+  if (!array_key_exists($key, $_ENV)) {
+    putenv(sprintf('%s=%s', $key, $value));
+    $_ENV[$key] = $value;
+  }
+}
+
 class AdminControllerCore{
     protected string $name;
     protected string $template;
