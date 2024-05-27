@@ -13,7 +13,7 @@
 /* Style global de l'application */
 
 header {
-    height: 3rem;
+    height: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,21 +25,22 @@ header {
         font-size: 18px;
         align-items: center;
 
-        img {
-            width: 2rem;
-            height: 2rem;
-        }
-
         #question {
             background-color: var(--black);
             color: var(--white);
-            width: 8rem;
+            width: 11rem;
             height: 2rem;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
+            padding: 0.5rem 0.5rem;
+
+            img {
+                width: 2rem;
+                height: 2rem;
+            }
         }
     }
 
@@ -79,6 +80,7 @@ body {
     margin: 0;
 }
 
+/* Page de connexion */
 #adminConnect {
     background: var(--modalBackground);
     color: var(--black);
@@ -143,3 +145,88 @@ body {
     }
 }
 
+/* Page d'administration */
+.sub-header {
+    background: var(--modalBackground);
+    color: var(--black);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 14rem;
+    padding-left: 3rem;
+
+    .left-part {
+        flex: 1;
+
+        .title {
+            font-size: 30px;
+            font-weight: 600;
+        }
+    }
+
+    .right-part {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+
+        .top {
+            flex: 1;
+
+            .top-left {
+                height: 100%;
+                display: flex;
+                gap: 0.5rem;
+                flex-direction: column-reverse;
+                justify-content: center;
+
+                .left-star {
+                    margin-left: -10rem;
+                    height: auto;
+                    width: 2rem;
+                }
+
+                .right-star {
+                    margin-left: -22rem;
+                    height: auto;
+                    width: 2rem;
+                }
+            }
+
+            .top-right {
+
+            }
+        }
+
+        .bot {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22rem;
+            background-color: var(--white);
+            border-top-left-radius: 90px;
+            border-top-right-radius: 90px;
+
+            #imsic-link {
+                background-color: var(--black);
+                color: var(--white);
+                width: 13rem;
+                height: 2rem;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 0.5rem 0.5rem;
+
+                img {
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
+        }
+    }
+}
