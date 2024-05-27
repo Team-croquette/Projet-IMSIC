@@ -49,6 +49,11 @@ class ControllerCore{
 
     protected function renderTemplate(): void
     {
+        $siteRoot = explode('www/',SITE_PATH,2)[1];
+        $templatesRoot = SITE_PATH.'/templates/';
+        if ($siteRoot[0] !== '/') {
+            $siteRoot = '/' . $siteRoot;
+        }
         if ($this->name == null || $this->template == null) {
             require SITE_PATH . '/templates/index/index.php';
         } else {
