@@ -55,9 +55,11 @@ class SecuIpController extends ControllerCore
         $secu = new \SecuIpModel();
         $nbrCoFromIp = $secu->nbrCoFromIp($ip);
         if ($nbrCoFromIp<4) {
-            return ["case"=> 0, "info" => $nbrCoFromIp . " appareil(s) a(ont) déjà éssayé de se connecté depuis votre réseaux. \n" . 5 - $nbrCoFromIp . 'connexions restante(s).'];
+            $txtInfo = $nbrCoFromIp . ' appareil(s) a(ont) déjà éssayé de se connecté depuis votre réseaux. ' . 5 - $nbrCoFromIp . 'connexions restante(s).';
+            return ["case"=> 0, "info" => $txtInfo ];
         } elseif ($nbrCoFromIp == 4) {
-            return ["case"=> 1, "info" => $nbrCoFromIp . " appareils ont déjà éssayé de se connecté depuis votre réseaux. \n Ceci sera votre dernière tentative."];
+            $txtInfo =$nbrCoFromIp . ' appareils ont déjà éssayé de se connecté depuis votre réseaux.  Ceci sera votre dernière tentative.';
+            return ["case"=> 1, "info" => $txtInfo];
         } else {
             return ["case"=> 2, "info" => 'Nous avons déjà recu le nombres de tentatives maximum pour ce questionnaire depuis votre réseaux.'];
         }

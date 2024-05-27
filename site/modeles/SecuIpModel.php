@@ -75,6 +75,7 @@ class SecuIpModel extends ModelCore {
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
-        return $result ['EXISTS( SELECT * FROM DESAC_IP WHERE (CIBLE=? AND DATE_REACTIVATE > ?) OR (CIBLE="all" AND DATE_REACTIVATE > ?)'];
+        //var_dump($result);
+        return $result ['EXISTS( SELECT * FROM DESAC_IP WHERE (CIBLE=? AND DATE_REACTIVATE > ?) OR (CIBLE="all" AND DATE_REACTIVATE > ?))'];
     }
 }
