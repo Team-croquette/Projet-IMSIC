@@ -34,6 +34,12 @@ class IndexAdminController extends AdminControllerCore{
             $vars['adminUsers'] =  (new UserModel())->getAllUser();
             $vars['addUserForm'] =  $this->getForm();
         }
+        $vars['errors'] = [];
+        if (isset($_SESSION['errors']) && json_decode($_SESSION['errors']) != []) {
+            $vars['errors'] = json_decode($_SESSION['errors']);
+            unset($_SESSION['errors']);
+        }
+       
         return $vars ;
     }
 
