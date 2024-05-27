@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="FR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Accès Espace Administrateur</title>
+        <link rel="stylesheet" href="<?= $adminRoot; ?>/assets/css/style.css">
+        <script src="<?= $adminRoot; ?>/assets/scripts/modal.js"></script>
+    </head>
 <body>
     <?php require_once $templatesRoot .'header.php'; ?>
 
@@ -10,7 +16,7 @@
                     <h2>Gestion des administrateurs</h2>
                     <h3>Vous pouvez ajouter ou supprimer des administrateurs.</h3>
                 </div>
-                <button onclick="">Ajouter un admin</button>
+                <button class="showModal">Ajouter un admin</button>
             </div>
             <div class="gestion__content">
                 <ul>
@@ -29,7 +35,18 @@
 
     <?php } ?>
     <div class="modal" data-type="addUser">
-        <?= $addUserForm ?>
+        <div class="modal__form">
+            <?= $addUserForm ?>
+        </div>
+        <div class="modal__constraint">
+            <p>Le mot de passe doit comporter :</p>
+            <ul>
+                <li>8 caractères</li>
+                <li>1 majuscule</li>
+                <li>1 minuscule</li>
+                <li>1 caractère spécial</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

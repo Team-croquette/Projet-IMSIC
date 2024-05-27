@@ -45,8 +45,8 @@ class IndexAdminController extends AdminControllerCore{
             ->setMethod('GET')
             ->setClass('form')
             ->add('login','Identifiant', InputTypeEnum::TEXT,true)
-            ->add('password','Mot de passe', InputTypeEnum::PASSWORD,true)
-            ->add('confirm_password','Confirmation mot de passe', InputTypeEnum::PASSWORD,true)
+            ->add('password','Mot de passe', InputTypeEnum::PASSWORD,true,'', ['pattern' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'])
+            ->add('confirm_password','Confirmation mot de passe', InputTypeEnum::PASSWORD,true,'', ['pattern' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'])
             ->add('action','', InputTypeEnum::HIDDEN,true,'add')
             ->add('submit','', InputTypeEnum::SUBMIT,true,'Créer');
 
