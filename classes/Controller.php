@@ -1,8 +1,8 @@
 <?php
 
-$basePath = explode('site',dirname(__FILE__))[0];
+$basePath = explode('classes',dirname(__FILE__))[0];
 define('BASE_PATH', $basePath);
-define('SITE_PATH', $basePath . '/site/');
+define('SITE_PATH', $basePath);
 
 if (!file_exists(BASE_PATH . '/.env')) {
     throw new Exception("Le fichier .env n'existe pas.");
