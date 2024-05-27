@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Accès Espace Administrateur</title>
     <link rel="stylesheet" href="<?= $adminRoot; ?>/assets/css/style.css">
-
 </head>
 <body>
     <?php require_once $templatesRoot .'header.php'; ?>
