@@ -13,30 +13,43 @@ class IndexController extends ControllerCore
 
     public function run(): bool
     {
-
-
         $this->renderTemplate($this->getTemplateVariables());
         return true;
     }
 
     private function getTemplateVariables():array
     {
-        $secuIp = new SecuIpController();
-        $result = $secuIp->run();
-        $info = $secuIp->getInfo();
-        if ($result){
-            $resultSecuIp = 'class="disabled"';
-        } else {
-            $resultSecuIp = 'class="enabled"';
-        }
+        $secuIpCont = new SecuIpController();
+        $secuIpMod = new SecuIpModel();
+        if (! $secuIpMod->isIpDesac($secuIpCont->getIp())) {
+            $result = $secuIpCont->run();
+            $info = '<script type="text/javascript">window.alert("'. $secuIpCont->getInfo() .'");</script>';
 
-        $header = SITE_PATH . '/templates/header.php';
-        $footer = SITE_PATH . '/templates/footer.php';
-        return [
-            'header' => $header,
-            'footer' => $footer,
-            'resultSecuIp' => $resultSecuIp,
-            'info' => $info,
-        ];
+            if ($result) {
+                $resultSecuIp = 'class="disabled"';
+            } else {
+                $resultSecuIp = 'class="enabled"';
+            }
+
+            $header = SITE_PATH . '/templates/header.php';
+            $footer = SITE_PATH . '/templates/footer.php';
+            return [
+                'header' => $header,
+                'footer' => $footer,
+                'resultSecuIp' => $resultSecuIp,
+                'info' => $info,
+            ];
+        } else {
+            $header = SITE_PATH . '/templates/header.php';
+            $footer = SITE_PATH . '/templates/footer.php';
+            $resultSecuIp = 'class="enabled"';
+            $info = '';
+            return [
+                'header' => $header,
+                'footer' => $footer,
+                'resultSecuIp' => $resultSecuIp,
+                'info' => $info,
+            ];
+        }
     }
 }
