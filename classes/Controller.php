@@ -49,6 +49,11 @@ class ControllerCore{
 
     protected function renderTemplate($variables = []): void
     {
+        $siteRoot = explode('www/',SITE_PATH,2)[1];
+        $templatesRoot = SITE_PATH.'/templates/';
+        if ($siteRoot[0] !== '/') {
+            $siteRoot = '/' . $siteRoot;
+        }
         foreach($variables as $varName => $varValue){
             $$varName = $varValue;
         }

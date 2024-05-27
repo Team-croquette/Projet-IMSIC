@@ -11,8 +11,10 @@ class LoginAdminController extends AdminControllerCore{
     public function run(): bool
     {
         if(key_exists('token', $_SESSION)){
-            header('Location: ../');
-            die;
+            if ($_SESSION['token'] != (new LoginAdminController())->getToken($_SESSION['login'])) {
+                header('Location: ../');
+                die;
+            }
         }
         if(key_exists('submit', $_POST)){
             $this->proccessForm();
