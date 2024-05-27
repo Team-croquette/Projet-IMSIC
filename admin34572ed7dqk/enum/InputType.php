@@ -7,4 +7,5 @@ enum InputTypeEnum: string{
     case ENUM = 'enum';
     case PASSWORD = 'password';
     case SUBMIT = 'submit';
+    case HIDDEN = 'hidden';
 }

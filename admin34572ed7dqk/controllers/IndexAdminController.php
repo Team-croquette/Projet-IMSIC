@@ -18,7 +18,44 @@ class IndexAdminController extends AdminControllerCore{
             header('Location: ./login/');
             die;
         }
-        $this->renderTemplate();
+        $this->renderTemplate($this->getTemplateVariables());
         return true;
+    } 
+
+    private function getTemplateVariables():array{
+        
+        $owner = (new UserModel())->isOwner($_SESSION['login']);
+        $vars = [
+            'title' => 'Espace administrateur',
+            'owner' => $owner,
+        ];
+
+        if ($owner) {
+            $vars['adminUsers'] =  (new UserModel())->getAllUser();
+            $vars['addUserForm'] =  $this->getForm();
+        }
+        $vars['errors'] = [];
+        if (isset($_SESSION['errors']) && json_decode($_SESSION['errors']) != []) {
+            $vars['errors'] = json_decode($_SESSION['errors']);
+            unset($_SESSION['errors']);
+        }
+       
+        return $vars ;
+    }
+
+    private function getForm():string
+    {
+        $formBuilder = new FormBuilder();
+        $formBuilder
+            ->setAction('./user/index.php')
+            ->setMethod('GET')
+            ->setClass('form')
+            ->add('login','Identifiant', InputTypeEnum::TEXT,true)
+            ->add('password','Mot de passe', InputTypeEnum::PASSWORD,true,'', ['pattern' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'])
+            ->add('confirm_password','Confirmation mot de passe', InputTypeEnum::PASSWORD,true,'', ['pattern' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'])
+            ->add('action','', InputTypeEnum::HIDDEN,true,'add')
+            ->add('submit','', InputTypeEnum::SUBMIT,true,'Créer');
+
+        return $formBuilder->renderForm();
     }
 }

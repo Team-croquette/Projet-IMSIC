@@ -1,0 +1,145 @@
+/* Import de la police Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Variables */
+:root {
+    --background: #F8F9FF;
+    --modalBackground: #7EA7F8;
+    --white: #fff;
+    --black: #000;
+    --font: 'Poppins', sans-serif;
+}
+
+/* Style global de l'application */
+
+header {
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0 3rem;
+        font-size: 18px;
+        align-items: center;
+
+        img {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        #question {
+            background-color: var(--black);
+            color: var(--white);
+            width: 8rem;
+            height: 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+    }
+
+    #left-part {
+        font-weight: 600;
+    }
+
+    #right-part {
+        gap: 2rem;
+
+        #disconnect {
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--black);
+        }
+
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}
+
+body {
+    background: var(--background);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fin du style global de l'application */
+
+
+/* Style de la page admin */
+.alert-error {
+    padding: 0;
+    margin: 0;
+}
+
+#adminConnect {
+    background: var(--modalBackground);
+    color: var(--black);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 20rem;
+
+    h1 {
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    #form {
+        flex: 2;
+
+        form {
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            padding: 4rem;
+        }
+
+        .admin-form_group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            input {
+                border-radius: 10px;
+                border: 2px solid var(--black);
+                width: 18rem;
+                height: 2rem;
+            }
+        }
+
+        input[type="submit"] {
+            background-color: var(--black);
+            color: var(--white);
+            width: 8rem;
+            height: 2rem;
+            border-radius: 10px;
+        }
+    }
+
+    #text {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .left-star {
+            margin-right: 22rem;
+        }
+
+        .right-star {
+            margin-left: 22rem;
+        }
+    }
+}
+
