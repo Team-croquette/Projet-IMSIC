@@ -6,13 +6,16 @@ $(document).ready(function() {
     // Get the modal element
     const modal = $('.modal');
 
+    const modalBody = $('.modal_body');
+
     button.on('click', function() {
-        modal.show();
+        // définir a display flex
+        modal.css('display', 'flex');
     });
 
     // Event listener for clicking outside the modal
     $(window).on('click', function(event) {
-        if (!$(event.target).is(modal) && !$(event.target).is(button) && !$(event.target).closest(modal).length && modal.is(':visible')){
+        if (!$(event.target).is(modalBody) && !$(event.target).is(button) && !$(event.target).closest(modalBody).length && modal.is(':visible')){
             modal.hide();
         }
     });
