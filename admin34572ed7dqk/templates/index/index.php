@@ -37,6 +37,8 @@
     </div>
     <!-- End Sub Header -->
 
+    <a href="../conditions-generales.php">TEST</a>
+
 
     <div class="gestion">
         <div class="gestion__top">
@@ -88,5 +90,5 @@
     </div>
 </div>
 </body>
-
+<?php require_once $templatesRoot . 'footer.php'; ?>
 </html>
