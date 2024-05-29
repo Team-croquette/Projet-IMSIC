@@ -41,7 +41,6 @@
     </div>
     <!-- End Sub Header -->
 
-
     <div class="gestion">
         <div class="gestion__top">
             <div class="gestion__top--title">
@@ -101,5 +100,5 @@
     </div>
 </div>
 </body>
-
+<?php require_once $templatesRoot . 'footer.php'; ?>
 </html>
