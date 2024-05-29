@@ -1,8 +1,8 @@
 <?php
 
-$basePath = explode('site',dirname(__FILE__))[0];
+$basePath = explode('classes',dirname(__FILE__))[0];
 define('BASE_PATH', $basePath);
-define('SITE_PATH', $basePath . '/site/');
+define('SITE_PATH', $basePath);
 
 if (!file_exists(BASE_PATH . '/.env')) {
     throw new Exception("Le fichier .env n'existe pas.");
@@ -47,12 +47,21 @@ class ControllerCore{
         $this->name = $name;
     }
 
-    protected function renderTemplate(): void
+    protected function renderTemplate($variables = []): void
     {
+        $siteRoot = $_ENV["PROJECT_ROOT"];
+        $templatesRoot = SITE_PATH.'/templates/';
+        if ($siteRoot[0] !== '/') {
+            $siteRoot = '/' . $siteRoot;
+        }
+        foreach($variables as $varName => $varValue){
+            $$varName = $varValue;
+        }
+
         if ($this->name == null || $this->template == null) {
-            require SITE_PATH . '/templates/index/index.php';
+            require $templatesRoot . '/index/index.php';
         } else {
-            require SITE_PATH . '/templates/' . $this->name . '/' . $this->template;
+            require $templatesRoot . $this->name . '/' . $this->template;
         }
     }
 }

@@ -13,5 +13,5 @@ foreach(glob('./modeles/*.php') as $fileName){
     }
 }
 
-$controller = ControllerCore::getInstanceByName('SecuIp');
+$controller = ControllerCore::getInstanceByName('index');
 $controller->run();
