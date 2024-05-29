@@ -12,6 +12,6 @@
             <?php
         }
         ?>
-        <a id="question"><img class="left-star" src="<?= $adminRoot; ?>/assets/img/Help.png"/>Question</a>
+        <a id="question"><img class="left-star" src="<?= $adminRoot; ?>/assets/img/Help.png"/>Questionnaire</a>
     </div>
 </header>
