@@ -10,9 +10,8 @@
 </head>
 
 <body>
-<?php require_once $templatesRoot . 'header.php'; ?>
+    <?php require_once $templatesRoot . 'header.php'; ?>
 
-<?php if ($owner) { ?>
     <!-- Sub Header -->
     <div class="sub-header">
         <div class="left-part">
@@ -26,7 +25,8 @@
             <div class="top">
                 <div class="top-left">
                     <img src="<?= $adminRoot; ?>/assets/img/white-star.png" class="left-star" alt="white-star">
-                    <img src="<?= $adminRoot; ?>/assets/img/black-star.png" class="right-star" alt="black-star"></div>
+                    <img src="<?= $adminRoot; ?>/assets/img/black-star.png" class="right-star" alt="black-star">
+                </div>
                 <div class="top-right">
 
                 </div>
@@ -40,65 +40,108 @@
         </div>
     </div>
     <!-- End Sub Header -->
+    <?php if ($owner) { ?>
 
-    <div class="gestion">
-        <div class="gestion__top">
-            <div class="gestion__top--title">
-                <h2>Gestion des administrateurs</h2>
-                <div class="gestion_button">
-                    <span>Vous pouvez ajouter ou supprimer des administrateurs.</span>
-                    <button class="showModal">Ajouter un admin</button>
+        <div class="gestion">
+            <div class="gestion__top">
+                <div class="gestion__top--title">
+                    <h2>Gestion des administrateurs</h2>
+                    <div class="gestion_button">
+                        <span>Vous pouvez ajouter ou supprimer des administrateurs.</span>
+                        <button class="showModal" data-form-name="addUser">Ajouter un admin</button>
+                    </div>
+                </div>
+                <div class="gestion__content">
+                    <ul class="alert-error">
+                        <?php
+                        foreach ($userErrors as $message) {
+                        ?>
+                            <li>
+                                <?= $message; ?>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                    <ul class="content">
+                        <?php foreach ($adminUsers as $user) { ?>
+                            <li>
+                                <span><?= $user['identifiant'] ?></span>
+                                <span><?= $user['date'] ?></span>
+                                <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
+                                    <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img class="trash" src="<?= $adminRoot; ?>/assets/img/Empty_Trash.png" />Supprimer</a>
+                                <?php } else {
+                                ?>
+                                    <div></div>
+                                <?php } ?>
+                            </li>
+                        <?php } ?>
+                    </ul>
                 </div>
             </div>
 
+
+            <div class="modal addUser">
+                <div class="modal_body">
+                    <div class="modal__form">
+                        <?= $addUserForm ?>
+                    </div>
+                    <div class="modal__constraint">
+                        <p>Le mot de passe doit comporter :</p>
+                        <ul>
+                            <li>8 caractères</li>
+                            <li>1 majuscule</li>
+                            <li>1 minuscule</li>
+                            <li>1 caractère spécial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <?php } ?>
+    <div class="gestion">
+        <div class="gestion__top">
+            <div class="gestion__top--title">
+                <h2>Gestion du questionnaire</h2>
+                <h3>Vous pouvez ajouter ou supprimer des questions.</h3>
+            </div>
+            <button class="showModal" data-form-name="addQuestion">Ajouter une question</button>
         </div>
         <div class="gestion__content">
             <ul class="alert-error">
                 <?php
-                foreach ($errors as $message) {
-                    ?>
+                foreach ($questionErrors as $message) {
+                ?>
                     <li>
                         <?= $message; ?>
                     </li>
-                    <?php
+                <?php
                 }
                 ?>
             </ul>
-            <ul class="content">
-                <?php foreach ($adminUsers as $user) { ?>
+            <ul>
+                <?php foreach ($questions as $question) { ?>
                     <li>
                         <span><?= $user['identifiant'] ?></span>
                         <span><?= $user['date'] ?></span>
                         <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img
-                                        class="trash" src="<?= $adminRoot; ?>/assets/img/Empty_Trash.png"/>Supprimer</a>
-                        <?php } else {
-                            ?>
-                            <div></div>
+                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>">Supprimer</a>
                         <?php } ?>
                     </li>
                 <?php } ?>
             </ul>
         </div>
     </div>
-
-<?php } ?>
-<div class="modal" data-type="addUser">
-    <div class="modal_body">
-        <div class="modal__form">
-            <?= $addUserForm ?>
-        </div>
-        <div class="modal__constraint">
-            <p>Le mot de passe doit comporter :</p>
-            <ul>
-                <li>8 caractères</li>
-                <li>1 majuscule</li>
-                <li>1 minuscule</li>
-                <li>1 caractère spécial</li>
-            </ul>
+    <div class="modal addQuestion">
+        <div class="modal_body">
+            <div class="modal__form">
+                <?= $addQuestionForm ?>
+            </div>
         </div>
     </div>
-</div>
+    </div>
 </body>
 <?php require_once $templatesRoot . 'footer.php'; ?>
+
 </html>

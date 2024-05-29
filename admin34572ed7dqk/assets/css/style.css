@@ -350,6 +350,13 @@ body {
     }
 }
 
+.addQuestion{
+
+    .modal_body .modal__form .form{
+        flex-direction: row;
+    }
+}
+
 /** Footer **/
 footer {
     background-color: black;
