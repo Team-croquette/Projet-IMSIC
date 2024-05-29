@@ -34,7 +34,7 @@ class UserModel extends ModelCore{
         $query->bind_result($owner);
         $query->fetch();
 
-        return ($owner);
+        return $owner == 1;
     }
     
     public function getAllUser():array
