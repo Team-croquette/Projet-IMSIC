@@ -10,7 +10,13 @@ class UserAdminController extends AdminControllerCore{
 
     public function run(): bool
     {
-        if(!key_exists('token', $_SESSION) || !((new UserModel())->isOwner($_SESSION['login']))){
+        if(!key_exists('token', $_SESSION)){
+
+            header('Location: ../');
+            die;
+        }
+
+        if(!((new UserModel())->isOwner($_SESSION['login'])) || $_SESSION['token'] != (new LoginAdminController())->getToken($_SESSION['login'])){
 
             header('Location: ../');
             die;
@@ -27,17 +33,16 @@ class UserAdminController extends AdminControllerCore{
     }
 
     private function executeAction($params){       
-
         switch ($params['action']) {
             case 'remove':
-                (new UserModel())->removeUser($_GET['id']);
+                (new UserModel())->removeUser($params['id']);
                 break;
             case 'add':
-                if ($_GET['password'] != $_GET['confirm_password']) {
+                if ($_GET['password'] != $params['confirm_password']) {
                     $this->errors[] = 'Les mots de passe ne correspondent pas.';
                     break;
                 }
-                (new UserModel())->addUser($_GET['login'],$_GET['password']);
+                (new UserModel())->addUser($params['login'],$params['password']);
                 break;
 
         }
