@@ -17,8 +17,10 @@
     <div class="sub-header">
         <div class="left-part">
             <span class="title">Espace<br>Administrateur</span>
+            <!--
             <p>Pour nous aider à évaluer et comparer les perceptions de la valeur de l'information entre les
                 journalistes/professionnels de l'information et le grand public</p>
+                !-->
         </div>
         <div class="right-part">
             <div class="top">
@@ -31,7 +33,9 @@
             </div>
 
             <div class="bot">
-                <a id="imsic-link"><img class="left-star" src="<?= $adminRoot; ?>/assets/img/Help.png"/>L’IMSIC c’est quoi ?</a>
+                <!--
+                <a id="imsic-link" href="https://www.imsic.fr/"><img class="left-star" src="<?= $adminRoot; ?>/assets/img/Help.png"/>L’IMSIC c’est quoi ?</a>
+                !-->
             </div>
         </div>
     </div>
@@ -41,9 +45,12 @@
         <div class="gestion__top">
             <div class="gestion__top--title">
                 <h2>Gestion des administrateurs</h2>
-                <h3>Vous pouvez ajouter ou supprimer des administrateurs.</h3>
+                <div class="gestion_button">
+                    <span>Vous pouvez ajouter ou supprimer des administrateurs.</span>
+                    <button class="showModal">Ajouter un admin</button>
+                </div>
             </div>
-            <button class="showModal">Ajouter un admin</button>
+
         </div>
         <div class="gestion__content">
             <ul class="alert-error">
@@ -57,13 +64,17 @@
                 }
                 ?>
             </ul>
-            <ul>
+            <ul class="content">
                 <?php foreach ($adminUsers as $user) { ?>
                     <li>
                         <span><?= $user['identifiant'] ?></span>
                         <span><?= $user['date'] ?></span>
                         <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>">Supprimer</a>
+                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img
+                                        class="trash" src="<?= $adminRoot; ?>/assets/img/Empty_Trash.png"/>Supprimer</a>
+                        <?php } else {
+                            ?>
+                            <div></div>
                         <?php } ?>
                     </li>
                 <?php } ?>
@@ -73,17 +84,19 @@
 
 <?php } ?>
 <div class="modal" data-type="addUser">
-    <div class="modal__form">
-        <?= $addUserForm ?>
-    </div>
-    <div class="modal__constraint">
-        <p>Le mot de passe doit comporter :</p>
-        <ul>
-            <li>8 caractères</li>
-            <li>1 majuscule</li>
-            <li>1 minuscule</li>
-            <li>1 caractère spécial</li>
-        </ul>
+    <div class="modal_body">
+        <div class="modal__form">
+            <?= $addUserForm ?>
+        </div>
+        <div class="modal__constraint">
+            <p>Le mot de passe doit comporter :</p>
+            <ul>
+                <li>8 caractères</li>
+                <li>1 majuscule</li>
+                <li>1 minuscule</li>
+                <li>1 caractère spécial</li>
+            </ul>
+        </div>
     </div>
 </div>
 </body>
