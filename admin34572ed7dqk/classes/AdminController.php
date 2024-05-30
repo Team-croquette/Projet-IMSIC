@@ -57,6 +57,12 @@ class AdminControllerCore{
         if ($adminRoot[0] !== '/') {
             $adminRoot = '/' . $adminRoot;
         }
+
+        $siteRoot = $_ENV["PROJECT_ROOT"];
+        $templatesSiteRoot = SITE_PATH.'/templates/';
+        if ($siteRoot[0] !== '/') {
+            $siteRoot = '/' . $siteRoot;
+        }
         require ADMIN_PATH.'/templates/' . $this->name . '/' . $this->template;
     }
 }
