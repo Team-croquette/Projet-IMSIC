@@ -6,7 +6,7 @@
     <title>Accès Espace Administrateur</title>
     <link rel="stylesheet" href="<?= $siteRoot; ?>/assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<?= $siteRoot; ?>/assets/scripts/modal.js"></script>
+    <script src="<?= $siteRoot; ?>admin34572ed7dqk/assets/scripts/modal.js"></script>
 </head>
 
 <body>
