@@ -14,6 +14,6 @@
     </div>
 
     <div id="right-part">
-        <a id="openPopupBtn" <?= $resultSecuIp; ?>><img class="left-star" src="<?= $siteRoot; ?>/assets/img/Help.png"/>Questionnaire</a>
+        <a id="openPopupBtn" class="button" <?= $resultSecuIp; ?>><img class="left-star" src="<?= $siteRoot; ?>/assets/img/Help.png"/>Questionnaire</a>
     </div>
 </header>
