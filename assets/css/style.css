@@ -123,8 +123,10 @@ body {
             background-color: var(--black);
             color: var(--white);
             width: 8rem;
-            height: 2rem;
+            height: 2.5rem;
+            font-size: 16px;
             border-radius: 10px;
+            padding: 0.5rem 0.5rem;
         }
     }
 
@@ -479,6 +481,7 @@ body {
 .button {
     text-decoration: none;
     user-select: none;
+    color: black;
 }
 
 .button :hover {
