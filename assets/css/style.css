@@ -24,7 +24,7 @@ header {
         font-size: 18px;
         align-items: center;
 
-        #question {
+        #openPopupBtn {
             background-color: var(--black);
             color: var(--white);
             width: 11rem;
