@@ -380,7 +380,6 @@ body {
         width: 1rem;
         height: 1rem;
     }
-
 }
 
 #start {
@@ -474,9 +473,16 @@ body {
                 }
             }
         }
-
     }
+}
 
+.button {
+    text-decoration: none;
+    user-select: none;
+}
+
+.button :hover {
+    cursor: pointer;
 }
 
 /** Footer **/
