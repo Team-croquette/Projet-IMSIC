@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     button.on('click', function() {
         // définir a display flex
-        modal.css('display', 'flex');
+        $('.'+ $(this).data('formName')).css('display', 'flex');
     });
 
     // Event listener for clicking outside the modal

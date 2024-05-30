@@ -52,7 +52,11 @@ class AdminControllerCore{
         foreach($variables as $varName => $varValue){
             $$varName = $varValue;
         }
-        $adminRoot = explode($_ENV['PROJECT_ROOT'],ADMIN_PATH,2)[1];
+        $adminRoot = '/admin34572ed7dqk/';
+
+        if ($_ENV['PROJECT_ROOT'] != '/') {
+            $adminRoot = $_ENV['PROJECT_ROOT'].'/'.$adminRoot;
+        }
         $templatesRoot = ADMIN_PATH.'/templates/';
         if ($adminRoot[0] !== '/') {
             $adminRoot = '/' . $adminRoot;
