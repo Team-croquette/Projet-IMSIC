@@ -40,7 +40,7 @@ class FormBuilder{
         $innerForm = ''; 
                 
         foreach($this->inputs as $input){
-            $innerForm .= $input->renderInput();
+            $innerForm .= "\n" . $input->renderInput();
         }
 
         return $formStart . $innerForm . '</form>';

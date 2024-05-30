@@ -1,5 +1,4 @@
 <header>
-
     <!-- code captcha -->
     <link rel="stylesheet" href="<?= $siteRoot ?>/assets/style/popupCaptchaStyle.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -8,12 +7,13 @@
     </script>
     <script src="<?= $siteRoot ?>/assets/script/scriptCaptcha.js"></script>
     <?php include 'templates/popupCaptcha/index.php' ?>
+  
+  <div id="left-part">
+        <img class="left-star" src="<?= $siteRoot; ?>/assets/img/ask-question.png"/>
+        <a>IMSIC Questionnaire</a>
+    </div>
 
-    <nav>
-        <ul>
-            <li><a href="home">Accueil</a></li>
-            <li><a href="admin">Admin</a></li>
-            <li><a id="openPopupBtn" <?= $resultSecuIp; ?> >Questionnaire</a></li>
-        </ul>
-    </nav>
+    <div id="right-part">
+        <a id="openPopupBtn" <?= $resultSecuIp; ?>><img class="left-star" src="<?= $siteRoot; ?>/assets/img/Help.png"/>Questionnaire</a>
+    </div>
 </header>

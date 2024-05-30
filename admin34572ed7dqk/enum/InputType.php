@@ -8,4 +8,8 @@ enum InputTypeEnum: string{
     case PASSWORD = 'password';
     case SUBMIT = 'submit';
     case HIDDEN = 'hidden';
+    case TEXTAREA = 'textarea';
+    case GROUP = 'group';
+    case RADIO = 'radio';
+    case NUMBER = 'number';
 }
