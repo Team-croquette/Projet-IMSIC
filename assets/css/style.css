@@ -24,7 +24,7 @@ header {
         font-size: 18px;
         align-items: center;
 
-        #question {
+        #openPopupBtn {
             background-color: var(--black);
             color: var(--white);
             width: 11rem;
@@ -123,8 +123,10 @@ body {
             background-color: var(--black);
             color: var(--white);
             width: 8rem;
-            height: 2rem;
+            height: 2.5rem;
+            font-size: 16px;
             border-radius: 10px;
+            padding: 0.5rem 0.5rem;
         }
     }
 
@@ -240,6 +242,8 @@ body {
     .gestion__top {
         .gestion__top--title {
             h2 {
+                font-weight: 600;
+                font-size: 27px;
                 margin-bottom: 0;
             }
 
@@ -322,6 +326,18 @@ body {
     justify-content: center;
     z-index: 3;
 
+    .left-star {
+        position: absolute;
+        top: 20%;
+        left: 54%;
+    }
+
+    .right-star {
+        position: absolute;
+        top: 35%;
+        left: 75%;
+    }
+
 
     .modal_body {
         height: 27rem;
@@ -337,12 +353,28 @@ body {
             .form {
                 display: flex;
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1rem;
 
                 .admin-form_group {
                     display: flex;
                     gap: 1rem;
                     flex-direction: column;
+                }
+                input[type=password], input[type=text] {
+                    border-radius: 10px;
+                    border: 1px solid var(--black);
+                    width: 18rem;
+                    height: 2rem;
+                }
+
+                input[type="submit"] {
+                    background-color: var(--black);
+                    color: var(--white);
+                    width: 8rem;
+                    height: 2.5rem;
+                    font-size: 16px;
+                    border-radius: 10px;
+                    padding: 0.5rem 0.5rem;
                 }
             }
 
@@ -380,7 +412,6 @@ body {
         width: 1rem;
         height: 1rem;
     }
-
 }
 
 #start {
@@ -474,9 +505,17 @@ body {
                 }
             }
         }
-
     }
+}
 
+.button {
+    text-decoration: none;
+    user-select: none;
+    color: black;
+}
+
+.button :hover {
+    cursor: pointer;
 }
 
 /** Footer **/

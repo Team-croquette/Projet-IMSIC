@@ -96,6 +96,9 @@
                         </ul>
                     </div>
                 </div>
+                <!-- stars -->
+                <img src="<?= $siteRoot; ?>/assets/img/white-star.png" class="left-star" alt="white-star">
+                <img src="<?= $siteRoot; ?>/assets/img/black-star.png" class="right-star" alt="black-star">
             </div>
         </div>
 
@@ -120,13 +123,13 @@
                 }
                 ?>
             </ul>
-            <ul>
+            <ul class="content">
                 <?php foreach ($questions as $question) { ?>
                     <li>
                         <span><?= $user['identifiant'] ?></span>
                         <span><?= $user['date'] ?></span>
                         <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>">Supprimer</a>
+                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img class="trash" src="<?= $siteRoot; ?>/assets/img/Empty_Trash.png" />Supprimer</a>
                         <?php } ?>
                     </li>
                 <?php } ?>
