@@ -123,11 +123,8 @@
             <ul>
                 <?php foreach ($questions as $question) { ?>
                     <li>
-                        <span><?= $user['identifiant'] ?></span>
-                        <span><?= $user['date'] ?></span>
-                        <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>">Supprimer</a>
-                        <?php } ?>
+                        <span><?= $question['libelle'] ?></span>
+                        <a href="<?= $adminRoot ?>/question/?action=remove&id=<?= $question['id'] ?>">Supprimer</a>
                     </li>
                 <?php } ?>
             </ul>

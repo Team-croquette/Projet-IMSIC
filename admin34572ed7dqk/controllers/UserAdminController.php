@@ -10,23 +10,26 @@ class UserAdminController extends AdminControllerCore{
 
     public function run(): bool
     {
-        if(!key_exists('token', $_SESSION)){
+        try {
+            if(!key_exists('token', $_SESSION)){
 
-            header('Location: ../');
-            die;
-        }
+                header('Location: ../');
+                die;
+            }
 
-        if(!((new UserModel())->isOwner($_SESSION['login'])) || $_SESSION['token'] != (new LoginAdminController())->getToken($_SESSION['login'])){
+            if(!((new UserModel())->isOwner($_SESSION['login'])) || $_SESSION['token'] != (new LoginAdminController())->getToken($_SESSION['login'])){
+                header('Location: ../');
+                die;
+            }
 
-            header('Location: ../');
-            die;
-        }
-
-        if(key_exists('action', $_GET)){
-            $this->executeAction($_GET);
+            if(key_exists('action', $_GET)){
+                $this->executeAction($_GET);
+            }
+        } catch (Exception $e) {
+            $this->errors[] = $e->getMessage();
         }
         if ($this->errors != []) {
-            $_SESSION['errors'] = json_encode($this->errors);
+            $_SESSION['UserErrors'] = json_encode($this->errors);
         }
         header('Location: ../');
         return true;

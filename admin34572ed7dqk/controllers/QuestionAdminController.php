@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class QuestionAdminController extends AdminControllerCore{
+class QuestionAdminController extends AdminControllerCore
+{
     private array $errors = [];
 
     public function __construct()
@@ -10,35 +11,52 @@ class QuestionAdminController extends AdminControllerCore{
 
     public function run(): bool
     {
-        if(!key_exists('token', $_SESSION) || $_SESSION['token'] != (new LoginAdminController())->getToken($_SESSION['login'])){
+        try {
+            if (!key_exists('token', $_SESSION)){
+                header('Location: ../');
+                die;
+            }
+                
+            if( $_SESSION['token'] != (new LoginAdminController())->getToken($_SESSION['login'])) {
+                header('Location: ../');
+                die;
+            }
 
-            header('Location: ../');
-            die;
+            if (key_exists('action', $_POST)) {
+                $this->executeAction($_POST);
+            }
+            if (key_exists('action', $_GET)) {
+                $this->executeAction($_GET);
+            }
+        } catch (Exception $e) {
+            $this->errors[] = $e->getMessage();
         }
-
-        if(key_exists('action', $_GET)){
-            $this->executeAction($_GET);
-        }
+        
         if ($this->errors != []) {
-            $_SESSION['errors'] = json_encode($this->errors);
+            $_SESSION['questionErrors'] = json_encode($this->errors);
         }
+        
         header('Location: ../');
         return true;
     }
 
-    private function executeAction($params){       
-
+    private function executeAction($params)
+    {
         switch ($params['action']) {
             case 'remove':
-            (new QuestionModel())->removeQuestion($params['id']);
-            break;
-            case 'add':
-            if ($_GET['question'] == '') {
-                $this->errors[] = 'La question ne peut pas être vide.';
+                (new QuestionModel())->removeQuestion($params['id']);
                 break;
-            }
-            (new QuestionModel())->addQuestion($params['questionType'],$params['libelle'],$params['images'],$params['slider'],$params['reponses']);
-            break;
+            case 'add':              
+                if (!isset($params['questionType'])) {
+                    $this->errors[] = 'Le type de question doit être sélectionné.';
+                    break;
+                }
+                if ($params['libelle'] == '') {
+                    $this->errors[] = 'La question ne peut pas être vide.';
+                    break;
+                }
+                QuestionTypeEnum::tryFrom($params['questionType'])->addNewQuestion($params);
+                break;
         }
     }
 }
