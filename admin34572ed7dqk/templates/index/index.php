@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<?= $adminRoot; ?>/assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= $adminRoot; ?>/assets/scripts/modal.js"></script>
+    <script src="<?= $adminRoot; ?>/assets/scripts/confirm-delete.js"></script>
 </head>
 
 <body>
@@ -120,11 +121,11 @@
                 }
                 ?>
             </ul>
-            <ul>
+            <ul class="content">
                 <?php foreach ($questions as $question) { ?>
                     <li>
                         <span><?= $question['libelle'] ?></span>
-                        <a href="<?= $adminRoot ?>/question/?action=remove&id=<?= $question['id'] ?>">Supprimer</a>
+                        <a href="<?= $adminRoot ?>/question/?action=remove&id=<?= $question['id'] ?>"><img class="trash" src="<?= $adminRoot; ?>/assets/img/Empty_Trash.png" />Supprimer</a>
                     </li>
                 <?php } ?>
             </ul>
