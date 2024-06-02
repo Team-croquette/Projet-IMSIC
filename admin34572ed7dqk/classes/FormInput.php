@@ -20,10 +20,10 @@ class FormInput{
             $this->extra['options'] = $extra['enum']::cases;
         }
 
-        if (in_array($type, [InputTypeEnum::SELECT, InputTypeEnum::ENUM]) && !in_array('options', $extra) ) {
+        if (in_array($this->type, [InputTypeEnum::SELECT, InputTypeEnum::ENUM]) && !key_exists('options', $this->extra) ) {
             $this->extra['options'] = ['Aucune option renseignée' => 'error'];
         }
-        if ($type == InputTypeEnum::GROUP && !in_array('children', $extra)) {
+        if ($this->type == InputTypeEnum::GROUP && !key_exists('children', $this->extra)) {
             $this->extra['error'] = ['Aucune option renseignée' => 'error'];
         }
     }

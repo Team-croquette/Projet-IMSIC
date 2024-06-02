@@ -50,12 +50,16 @@ class SecuIpModel extends ModelCore {
 
     }
 
-    public function addDesacIp($cible, $tempoDesactivate) {
+    public function addDesacIp(string $cible, array $tempoDesactivate) {
         //$tempoDesactivate sous forme [heures , minutes, secondes]
+
+        $now = new DateTime();
+
+        $limit = $now->add(new DateInterval('PT'.$tempoDesactivate[0].'H'.$tempoDesactivate[1].'M'.$tempoDesactivate[2].'S'));       
+       
         $dbLink = $this->connectBd();
 
-        $now = date("Y-m-d H:i:s");
-        $dateReactivate = date("Y-m-d H:i:s", strtotime("+{$tempoDesactivate[0]}hours +{$tempoDesactivate[1]}minutes +{$tempoDesactivate[2]}seconds", $now));
+        $dateReactivate = date("Y-m-d H:i:s", $limit->getTimestamp());
 
         $queryReponse = mysqli_prepare($dbLink, 'INSERT Into DESAC_IP(CIBLE, DATE_REACTIVATE) Values (?, ?);');
         mysqli_stmt_bind_param($queryReponse, "ss", $cible, $dateReactivate);
