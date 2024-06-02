@@ -4,6 +4,7 @@ $basePath = explode('admin34572ed7dqk',dirname(__FILE__))[0];
 $basePath = str_replace('\\','/',$basePath);
 define('BASE_PATH',$basePath);
 define('ADMIN_PATH',$basePath.'/admin34572ed7dqk/');
+define('SITE_PATH', $basePath);
 
 if (!file_exists(BASE_PATH.'/.env')) {
     throw new Exception("Le fichier .env n'existe pas.");
@@ -60,6 +61,12 @@ class AdminControllerCore{
         $templatesRoot = ADMIN_PATH.'/templates/';
         if ($adminRoot[0] !== '/') {
             $adminRoot = '/' . $adminRoot;
+        }
+
+        $siteRoot = $_ENV["PROJECT_ROOT"];
+        $templatesSiteRoot = SITE_PATH.'/templates/';
+        if ($siteRoot[0] !== '/') {
+            $siteRoot = '/' . $siteRoot;
         }
         require ADMIN_PATH.'/templates/' . $this->name . '/' . $this->template;
     }

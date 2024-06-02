@@ -12,7 +12,6 @@ class VerifCaptchaController extends ControllerCore
             $secret = '6LfuDd0pAAAAADNCaKGxBszOE7Gq_sbrMRUOfJI9';
             $response = $_POST['g-recaptcha-response'];
             $remoteip = $_SERVER['REMOTE_ADDR'];
-
             $url = 'https://www.google.com/recaptcha/api/siteverify';
             $data = array(
                 'secret' => $secret,
@@ -31,7 +30,6 @@ class VerifCaptchaController extends ControllerCore
             $context  = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
             $resultJson = json_decode($result);
-
             if (!$resultJson->success) {
                 echo 0;
             } else {
