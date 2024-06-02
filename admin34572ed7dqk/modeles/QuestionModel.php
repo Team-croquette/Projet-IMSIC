@@ -25,8 +25,31 @@ class QuestionModel extends ModelCore{
 
     public function removeQuestion(int $id):bool
     {
+
         $dbLink = $this->connectBd();
-        # Delete question and its answers and so in the resultat table
+        $query = $dbLink->prepare('SELECT * FROM REPONSE WHERE `id_question`=?');
+        $query->bind_param('i',$id);
+
+        if(!$query->execute()){
+            $query->close();
+            throw $query->error;
+        }
+
+        $result = $query->get_result();
+        if($result->num_rows == 0){
+            $query->close();
+            
+            $query = $dbLink->prepare('DELETE FROM QUESTION WHERE `id`=?');
+            $query->bind_param('i',$id);
+
+            if(!$query->execute()){
+                $query->close();
+                throw $query->error;
+            }
+            return true;
+        }
+
+        $query->close();
         $query = $dbLink->prepare('DELETE r, res, q FROM REPONSE r LEFT JOIN QUESTION q ON r.`id_question`=q.`id` LEFT JOIN RESULTAT res ON r.`id_question`=res.`id_question` WHERE r.`id_question`=?;');
        
         $query->bind_param('i',$id);

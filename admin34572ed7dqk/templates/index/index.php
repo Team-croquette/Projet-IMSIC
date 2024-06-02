@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Accès Espace Administrateur</title>
-    <link rel="stylesheet" href="<?= $siteRoot; ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= $siteRoot; ?>assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= $siteRoot; ?>admin34572ed7dqk/assets/scripts/modal.js"></script>
     <script src="<?= $adminRoot; ?>/assets/scripts/confirm-delete.js"></script>
@@ -25,8 +25,8 @@
         <div class="right-part">
             <div class="top">
                 <div class="top-left">
-                    <img src="<?= $siteRoot; ?>/assets/img/white-star.png" class="left-star" alt="white-star">
-                    <img src="<?= $siteRoot; ?>/assets/img/black-star.png" class="right-star" alt="black-star"></div>
+                    <img src="<?= $siteRoot; ?>assets/img/white-star.png" class="left-star" alt="white-star">
+                    <img src="<?= $siteRoot; ?>assets/img/black-star.png" class="right-star" alt="black-star"></div>
                 <div class="top-right">
 
                 </div>
@@ -34,7 +34,7 @@
 
             <div class="bot">
                 <!--
-                <a id="imsic-link" href="https://www.imsic.fr/"><img class="left-star" src="<?= $siteRoot; ?>/assets/img/Help.png"/>L’IMSIC c’est quoi ?</a>
+                <a id="imsic-link" href="https://www.imsic.fr/"><img class="left-star" src="<?= $siteRoot; ?>assets/img/Help.png"/>L’IMSIC c’est quoi ?</a>
                 !-->
             </div>
         </div>
@@ -69,7 +69,7 @@
                                 <span><?= $user['identifiant'] ?></span>
                                 <span><?= $user['date'] ?></span>
                                 <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                                    <a href="<?= $siteRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img class="trash" src="<?= $siteRoot; ?>/assets/img/Empty_Trash.png" />Supprimer</a>
+                                    <a href="<?= $siteRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img class="trash" src="<?= $siteRoot; ?>assets/img/Empty_Trash.png" />Supprimer</a>
                                 <?php } else {
                                 ?>
                                     <div></div>
@@ -97,8 +97,8 @@
                     </div>
                 </div>
                 <!-- stars -->
-                <img src="<?= $siteRoot; ?>/assets/img/white-star.png" class="left-star" alt="white-star">
-                <img src="<?= $siteRoot; ?>/assets/img/black-star.png" class="right-star" alt="black-star">
+                <img src="<?= $siteRoot; ?>assets/img/white-star.png" class="left-star" alt="white-star">
+                <img src="<?= $siteRoot; ?>assets/img/black-star.png" class="right-star" alt="black-star">
             </div>
         </div>
 
@@ -126,11 +126,8 @@
             <ul class="content">
                 <?php foreach ($questions as $question) { ?>
                     <li>
-                        <span><?= $user['identifiant'] ?></span>
-                        <span><?= $user['date'] ?></span>
-                        <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>">Supprimer</a>
-                        <?php } ?>
+                        <span><?= $question['libelle'] ?></span>
+                        <a href="<?= $adminRoot ?>/question/?action=remove&id=<?= $question['id'] ?>"><img class="trash" src="<?= $siteRoot; ?>assets/img/Empty_Trash.png" />Supprimer</a>
                     </li>
                 <?php } ?>
             </ul>
