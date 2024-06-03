@@ -73,6 +73,8 @@ class IndexAdminController extends AdminControllerCore{
                     new FormInput('imageDescription[0]','Description de l’image <small>(facultatif)</small>', InputTypeEnum::TEXTAREA,false),
                     new FormInput('image[1]','', InputTypeEnum::IMAGE,false),
                     new FormInput('imageDescription[1]','Description de l’image <small>(facultatif)</small>', InputTypeEnum::TEXTAREA,false),
+                    new FormInput('action','', InputTypeEnum::HIDDEN,true,'add'),
+                    new FormInput('submit','', InputTypeEnum::SUBMIT,true,'Ajouter'),
                 ]
             ])
             ->add('reponse','Réponses autorisées :', InputTypeEnum::GROUP,false,'', [
@@ -96,9 +98,7 @@ class IndexAdminController extends AdminControllerCore{
                     new FormInput('choiseText[2]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Ecrire la réponse à choisir ici']),
                     new FormInput('choiseText[3]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Ecrire la réponse à choisir ici']),
                 ]
-            ])
-            ->add('action','', InputTypeEnum::HIDDEN,true,'add')
-            ->add('submit','', InputTypeEnum::SUBMIT,true,'Ajouter');
+            ]);
 
         return $formBuilder->renderForm();
     }

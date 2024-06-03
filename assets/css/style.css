@@ -77,7 +77,7 @@ body {
     flex-direction: column;
 }
 
-#void{
+#void {
     flex: 1;
 }
 
@@ -280,6 +280,15 @@ body {
     }
 }
 
+.addQuestion {
+    form {
+        display: flex;
+        align-items: flex-start;
+        overflow-y: scroll;
+        height: 20rem;
+    }
+}
+
 .gestion {
     display: flex;
     width: 95%;
@@ -408,6 +417,7 @@ body {
                     gap: 1rem;
                     flex-direction: column;
                 }
+
                 input[type=password], input[type=text] {
                     border-radius: 10px;
                     border: 1px solid var(--black);
@@ -432,9 +442,9 @@ body {
     }
 }
 
-.addQuestion{
+.addQuestion {
 
-    .modal_body .modal__form .form{
+    .modal_body .modal__form .form {
         flex-direction: row;
     }
 }
