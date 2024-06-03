@@ -58,7 +58,7 @@ class QuestionnaireController extends ControllerCore
             //$img = $this->getImgFromBlob($retourBD['IMG'], 'imgQuest1');
 
             $htmlQuestion .= '
-            <img id="img2Question" src= "data:image/*;base64,'.base64_encode($retourBD['IMG']).'"
+            <img id="img2Question" src= "data:image/*;base64,'.$retourBD['IMG'].'"
                 alt="' . $retourBD['IMG_DESC'].'"/>';
         }
 
@@ -67,7 +67,7 @@ class QuestionnaireController extends ControllerCore
             //$img = $this->getImgFromBlob($retourBD['IMG_SECOND'],'imgQuest2');
 
             $htmlQuestion .= '
-            <img id="img2Question" src= "data:image/*;base64,'.base64_encode($retourBD['IMG_SECOND']).'"
+            <img id="img2Question" src= "data:image/*;base64,'.$retourBD['IMG_SECOND'].'"
                 alt="' . $retourBD['IMG_SECOND_DESC'].'"/>';
         }
         $numQuestion = $_SESSION['currentQuestion']+1;
@@ -95,8 +95,8 @@ class QuestionnaireController extends ControllerCore
                 <form action="../questionnaire/" method="post">
                     <div class="slider-container">
                         <label for="slider">Sélectionnez une valeur :</label>
-                        <input type="range" id="slider" name="sliderValue" min="0" max="' . $retourBD['maxSlider'] . '" value="' . $retourBD['maxSlider']/2 . '" class="slider">
-                        <span id="sliderValeur">' . $retourBD['maxSlider']/2 . '</span>
+                        <input type="range" id="slider" name="sliderValue" min="0" max="' . $retourBD['maxSlider'] . '" value="' . round($retourBD['maxSlider']/2) . '" class="slider">
+                        <span id="sliderValeur">' . round($retourBD['maxSlider']/2) . '</span>
                     </div>
                     <input type="submit" value="Valider">
                 </form>
@@ -114,7 +114,7 @@ class QuestionnaireController extends ControllerCore
             case 1:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label for="inputField">Entrez une votre reponse :</label>
+                        <label for="champRep">Entrez une votre reponse :</label>
                         <input type="text" id="champRep" name="champRep" required>
                         <input type="submit" value="Valider">
                     </form>';
@@ -122,39 +122,44 @@ class QuestionnaireController extends ControllerCore
             case 2:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label for="inputField">Selectionner une ou plusieurs reponses :</label>';
+                        <label> Selectionner une ou plusieurs reponses :</label>';
 
                 $i = 0;
                 foreach ($retourBD['contenuReps'] as $row) {
+                    var_dump($row);
                     $htmlReponses .= '
                     <div class="reponse">
-                        <input type="checkbox" id="rep' . $i . '" name="selectedOption" value="' . $row['ID'] . '" required>
+                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="" required>
                         <label for="rep' . $i . '">' . $row['CONTENU'] . '</label>
                     </div>';
                     ++$i;
                 }
 
-                $htmlReponses .= '</form>';
+                $htmlReponses .= '    
+                    <input type="submit" value="Valider">
+                </form>';
                 break;
             case 3:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label for="inputField">Selectionner une ou plusieurs images :</label>';
+                        <label>Selectionner une ou plusieurs images :</label>';
 
                 $i = 0;
                 foreach ($retourBD['imgReps'] as $row) {
                     $htmlReponses .= '
                     <div class="reponse">
-                        <input type="checkbox" id="rep' . $i . '" name="selectedOption" value="' . $row['ID'] . '" required>
+                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="" required>
                         <label for="rep' . $i . '">' .
-                        '<img id="img' . $i . 'Rep" src= "data:image/*;base64,'.base64_encode($row['IMG']).'"
+                        '<img id="img' . $i . 'Rep" src= "data:image/*;base64,'.$row['IMG'].'"
                             alt="' . $row['IMG_LABEL'].'"/>' .
                         '</label>
                     </div>';
                     ++$i;
                 }
 
-                $htmlReponses .= '</form>';
+                $htmlReponses .= '    
+                    <input type="submit" value="Valider">
+                </form>';
                 break;
         }
 

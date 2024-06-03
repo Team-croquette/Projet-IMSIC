@@ -44,7 +44,7 @@ else
         $resultMod = new ResultatModel();
         $_SESSION['idClient'] = $resultMod->AddGetClient();
 
-        $_SESSION['currentQuestion'] = 0;
+        $_SESSION['currentQuestion'] = 5;
 
         $controller = ControllerCore::getInstanceByName(basename(__DIR__));
         $controller->run();

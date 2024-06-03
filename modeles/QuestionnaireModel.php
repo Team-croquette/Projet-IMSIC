@@ -59,20 +59,20 @@ class QuestionnaireModel extends ModelCore {
             $queryReponse = mysqli_prepare($dbLink, 'SELECT ID,CONTENU FROM REPONSE WHERE ID_QUESTION = ?');
             mysqli_stmt_bind_param($queryReponse, "s", $idQuestion);
             mysqli_stmt_execute($queryReponse);
-            $contenuReps = $queryReponse->get_result()->fetch_assoc();
+            $contenuReps = $queryReponse->get_result();
             mysqli_stmt_close($queryReponse);
 
-            var_dump($contenuReps);
+            //var_dump($contenuReps);
             return [ 'case' => 2, 'contenuReps' => $contenuReps];
         }
         elseif ($repStyle == 3){
             $queryReponse = mysqli_prepare($dbLink, 'SELECT ID, IMG, IMG_LABEL FROM REPONSE WHERE ID_QUESTION = ?');
             mysqli_stmt_bind_param($queryReponse, "s", $idQuestion);
             mysqli_stmt_execute($queryReponse);
-            $contenuReps = $queryReponse->get_result()->fetch_assoc();
+            $contenuReps = $queryReponse->get_result();
             mysqli_stmt_close($queryReponse);
 
-            var_dump($contenuReps);
+            //var_dump($contenuReps);
             return [ 'case' => 3, 'imgReps' => $contenuReps];
         }
 
@@ -108,26 +108,26 @@ class QuestionnaireModel extends ModelCore {
         }
 
         //si colonne contenue d'une des réponses n'est pas null = choix multiple text
-        $queryReponse = mysqli_prepare($dbLink, 'SELECT CASE WHEN CONTENU IS NOT NULL THEN "True" ELSE "False" END bool_val FROM REPONSE WHERE ID_QUESTION = ?)');
+        $queryReponse = mysqli_prepare($dbLink, 'SELECT CASE WHEN CONTENU IS NOT NULL THEN "True" ELSE "False" END bool_val FROM REPONSE WHERE ID_QUESTION = ?');
         mysqli_stmt_bind_param($queryReponse, "s", $idQuestion);
         mysqli_stmt_execute($queryReponse);
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
         //var_dump($result);
-        if ((bool) $result['bool_val'] == 'True') {
+        if ($result['bool_val'] == 'True') {
             return 2;
         }
 
         //sinon on verifie quand même qu'il y a une des images = choix multiple img
-        $queryReponse = mysqli_prepare($dbLink, 'SELECT CASE WHEN (IMG IS NOT NULL AND IMG_LABEL IS NOT NULL) THEN "True" ELSE "False" END bool_val FROM REPONSE WHERE ID_QUESTION = ?)');
+        $queryReponse = mysqli_prepare($dbLink, 'SELECT CASE WHEN (IMG IS NOT NULL AND IMG_LABEL IS NOT NULL) THEN "True" ELSE "False" END bool_val FROM REPONSE WHERE ID_QUESTION = ?');
         mysqli_stmt_bind_param($queryReponse, "s", $idQuestion);
         mysqli_stmt_execute($queryReponse);
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
         //var_dump($result);
-        if ((bool)$result['bool_val'] == 'True') {
+        if ($result['bool_val'] == 'True') {
             return 3;
         }
 
