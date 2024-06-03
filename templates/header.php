@@ -7,11 +7,13 @@
     </script>
     <script src="<?= $siteRoot ?>assets/script/scriptCaptcha.js"></script>
     <?php include 'templates/popupCaptcha/index.php' ?>
-
-    <div id="left-part">
-        <img class="left-star" src="<?= $siteRoot; ?>assets/img/ask-question.png"/>
-        <a class="button" href="<?= $siteRoot ?>">IMSIC Questionnaire</a>
-    </div>
+    
+    <a class="button" href="<?= $siteRoot ?>">
+        <div id="left-part">
+                <img class="left-star" src="<?= $siteRoot; ?>assets/img/ask-question.png"/>
+                <span>IMSIC Questionnaire</span>
+        </div>
+    </a>
 
     <div id="right-part" class="button">
         <a id="openPopupBtn" <?= $resultSecuIp; ?>><img class="left-star" src="<?= $siteRoot; ?>assets/img/Help.png"/>Questionnaire</a>
