@@ -34,6 +34,7 @@ class IndexAdminController extends AdminControllerCore{
             $vars['adminUsers'] =  (new UserModel())->getAllUser();
             $vars['addUserForm'] =  $this->getUserForm();
         }
+        $vars['ipAdresses'] =  (new IpAdressesModel())->getAllIp();
         $vars['questions'] =  (new QuestionModel())->getAllQuestion();
         $vars['addQuestionForm'] =  $this->getQuestionForm();
         $vars['addDesacIpForm'] =  $this->getDesacIpForm();
@@ -144,11 +145,6 @@ class IndexAdminController extends AdminControllerCore{
                 $secondes['options'][$i] .= 's';
             }
         }
-
-        // echo '<pre>';
-        // print_r($hours);
-        // echo '</pre>';
-        // die;
 
         $formBuilder = new FormBuilder();
         $formBuilder

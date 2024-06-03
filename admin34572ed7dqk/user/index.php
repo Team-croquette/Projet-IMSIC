@@ -9,9 +9,10 @@ foreach(glob('../classes/*.php') as $fileName){
     }
 }
 
+require_once '../modeles/ModelCore.php';
 foreach(glob('../modeles/*.php') as $fileName){
 
-    if (!str_contains($fileName,'index.php')) {
+    if (!str_contains($fileName,'index.php') && !str_contains($fileName,'ModelCore.php')) {
         require_once $fileName;
     }
 }
