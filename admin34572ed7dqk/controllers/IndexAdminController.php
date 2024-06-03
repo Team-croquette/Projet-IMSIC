@@ -36,6 +36,7 @@ class IndexAdminController extends AdminControllerCore{
         }
         $vars['questions'] =  (new QuestionModel())->getAllQuestion();
         $vars['addQuestionForm'] =  $this->getQuestionForm();
+        $vars['addDesacIpForm'] =  $this->getDesacIpForm();
 
         $vars['userErrors'] = [];
         if (isset($_SESSION['userErrors']) && json_decode($_SESSION['userErrors']) != []) {
@@ -46,6 +47,12 @@ class IndexAdminController extends AdminControllerCore{
         if (isset($_SESSION['questionErrors']) && json_decode($_SESSION['questionErrors']) != []) {
             $vars['questionErrors'] = json_decode($_SESSION['questionErrors']);
             unset($_SESSION['questionErrors']);
+        }
+
+        $vars['ipErrors'] = [];
+        if (isset($_SESSION['ipErrors']) && json_decode($_SESSION['ipErrors']) != []) {
+            $vars['ipErrors'] = json_decode($_SESSION['ipErrors']);
+            unset($_SESSION['ipErrors']);
         }
        
         return $vars ;
@@ -107,6 +114,52 @@ class IndexAdminController extends AdminControllerCore{
             ->add('confirm_password','Confirmation mot de passe', InputTypeEnum::PASSWORD,true,'', ['pattern' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'])
             ->add('action','', InputTypeEnum::HIDDEN,true,'add')
             ->add('submit','', InputTypeEnum::SUBMIT,true,'Ajouter');
+
+        return $formBuilder->renderForm();
+    }
+
+    private function getDesacIpForm():string
+    {
+        $hours['options'] = [];
+        for ($i = 0; $i <= 24; $i++) {
+            $hours['options'][$i] = $i . ' heure';
+            if ($i > 1) {
+                $hours['options'][$i] .= 's';
+            }
+        }
+        $minutes['options'] = [];
+
+        for ($i = 0; $i < 60; $i++) {
+            $minutes['options'][$i] = $i . ' minute';
+            if ($i > 1) {
+                $minutes['options'][$i] .= 's';
+            }
+        }
+
+        $secondes['options'] = [];
+
+        for ($i = 0; $i < 60; $i++) {
+            $secondes['options'][$i] = $i . ' seconde';
+            if ($i > 1) {
+                $secondes['options'][$i] .= 's';
+            }
+        }
+
+        // echo '<pre>';
+        // print_r($hours);
+        // echo '</pre>';
+        // die;
+
+        $formBuilder = new FormBuilder();
+        $formBuilder
+            ->setAction('./secuIp/index.php')
+            ->setMethod('POST')
+            ->setClass('form')
+            ->add('action','', InputTypeEnum::HIDDEN,true,'desactivate')
+            ->add('tempo[0]','Augmenter temporairement la limite de personnes pouvant répondre de cette durée :', InputTypeEnum::SELECT,false,'0',$hours)
+            ->add('tempo[1]','', InputTypeEnum::SELECT,false,'0',$minutes)
+            ->add('tempo[2]','', InputTypeEnum::SELECT,false,'0',$secondes)
+            ->add('submit','', InputTypeEnum::SUBMIT,true,'Valider');
 
         return $formBuilder->renderForm();
     }

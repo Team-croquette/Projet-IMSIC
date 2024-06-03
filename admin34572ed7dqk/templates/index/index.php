@@ -39,6 +39,22 @@
             </div>
         </div>
     </div>
+    
+    <div class="desac-ip">
+        <div class="desac-ip__error">
+            <ul class="alert-error">
+                <?php
+                foreach ($ipErrors as $message) {
+                ?>
+                    <li>
+                        <?= $message; ?>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        <?= $addDesacIpForm ?>
+    </div>
     <!-- End Sub Header -->
     <?php if ($owner) { ?>
 
