@@ -159,9 +159,12 @@
         <div class="gestion__top">
             <div class="gestion__top--title">
                 <h2>Gestion du questionnaire</h2>
-                <h3>Vous pouvez ajouter ou supprimer des questions.</h3>
+                <div class="gestion_button">
+                    <span>Vous pouvez ajouter ou supprimer des questions.</span>
+                    <button class="showModal" data-form-name="addQuestion">Ajouter une question</button>
+                </div>
             </div>
-            <button class="showModal" data-form-name="addQuestion">Ajouter une question</button>
+
         </div>
         <div class="gestion__content">
             <ul class="alert-error">

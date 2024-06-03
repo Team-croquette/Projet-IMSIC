@@ -90,6 +90,43 @@ body {
     margin: 0;
 }
 
+.desac-ip {
+    display: flex;
+    width: 95%;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 1rem 0 0 5%;
+
+    .admin-form_group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    select {
+        margin-right: 1rem;
+        border-radius: 14px;
+        width: 9rem;
+        font-weight: 500;
+        height: 3rem;
+    }
+
+    input[type="submit"] {
+        background-color: var(--black);
+        color: var(--white);
+        border-radius: 14px;
+        width: 9rem;
+        font-weight: 500;
+        height: 3rem;
+    }
+}
+
 /* Page de connexion */
 #adminConnect {
     background: var(--modalBackground);
