@@ -64,6 +64,8 @@
             </div>
         </div>
     </div>
+
+    </div>
     <?php require_once $templatesRoot . 'footer.php'; ?>
 
 </body>

@@ -32,6 +32,8 @@
         </div>
     </div>
 </div>
+<div id="void">
+</div>
 <?php require_once $templatesSiteRoot . 'footer.php'; ?>
 </body>
 </html>
