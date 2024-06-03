@@ -26,9 +26,9 @@
             <?= $form; ?>
         </div>
         <div id="text">
-            <img class="left-star" src="<?= $siteRoot; ?>/assets/img/white-star.png"/>
+            <img class="left-star" src="<?= $siteRoot; ?>assets/img/white-star.png"/>
             <h1>Accès Espace<br/>Administrateur</h1>
-            <img class="right-star" src="<?= $siteRoot; ?>/assets/img/black-star.png"/>
+            <img class="right-star" src="<?= $siteRoot; ?>assets/img/black-star.png"/>
         </div>
     </div>
 </div>

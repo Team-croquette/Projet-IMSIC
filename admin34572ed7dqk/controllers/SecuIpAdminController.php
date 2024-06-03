@@ -1,6 +1,8 @@
 <?php
 
-class QuestionAdminController extends AdminControllerCore
+require_once SITE_PATH . '/modeles/SecuIpModel.php';
+
+class SecuIpAdminController extends AdminControllerCore
 {
     private array $errors = [];
 
@@ -21,19 +23,16 @@ class QuestionAdminController extends AdminControllerCore
                 header('Location: ../');
                 die;
             }
-
+            
             if (key_exists('action', $_POST)) {
                 $this->executeAction($_POST);
-            }
-            if (key_exists('action', $_GET)) {
-                $this->executeAction($_GET);
             }
         } catch (Exception $e) {
             $this->errors[] = $e->getMessage();
         }
         
         if ($this->errors != []) {
-            $_SESSION['questionErrors'] = json_encode($this->errors);
+            $_SESSION['ipErrors'] = json_encode($this->errors);
         }
         
         header('Location: ../');
@@ -43,19 +42,8 @@ class QuestionAdminController extends AdminControllerCore
     private function executeAction($params)
     {
         switch ($params['action']) {
-            case 'remove':
-                (new QuestionModel())->removeQuestion($params['id']);
-                break;
-            case 'add':              
-                if (!isset($params['questionType'])) {
-                    $this->errors[] = 'Le type de question doit être sélectionné.';
-                    break;
-                }
-                if ($params['libelle'] == '') {
-                    $this->errors[] = 'La question ne peut pas être vide.';
-                    break;
-                }
-                QuestionTypeEnum::tryFrom($params['questionType'])->addNewQuestion($params);
+            case 'desactivate':
+                (new SecuIpModel())->addDesacIp('all', $params['tempo']);
                 break;
         }
     }
