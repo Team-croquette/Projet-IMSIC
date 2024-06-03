@@ -45,6 +45,9 @@ else
         $_SESSION['idClient'] = $resultMod->AddGetClient();
 
         $_SESSION['currentQuestion'] = 0;
+
+        $controller = ControllerCore::getInstanceByName(basename(__DIR__));
+        $controller->run();
     } else {
         header('Location: ../');
     }

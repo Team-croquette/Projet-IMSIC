@@ -15,7 +15,7 @@ class QuestionnaireModel extends ModelCore {
         }
         mysqli_stmt_close($queryReponse);
 
-        var_dump($ids);
+        //var_dump($ids);
         return $ids;
     }
 
@@ -30,8 +30,8 @@ class QuestionnaireModel extends ModelCore {
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
-        var_dump($result['*']);
-        return $result['*'];
+        //var_dump($result);
+        return $result;
     }
 
     public function getRepFromQuest($idQuestion) {
@@ -47,7 +47,7 @@ class QuestionnaireModel extends ModelCore {
             $maxSlider = $queryReponse->get_result()->fetch_assoc();
             mysqli_stmt_close($queryReponse);
 
-            var_dump($maxSlider);
+            //var_dump($maxSlider);
             return [ 'case' => 0, 'maxSlider' => $maxSlider['SLIDER']];
 
         }
@@ -56,25 +56,24 @@ class QuestionnaireModel extends ModelCore {
 
         }
         elseif ($repStyle == 2){
-            $queryReponse = mysqli_prepare($dbLink, 'SELECT CONTENU FROM REPONSE WHERE ID_QUESTION = ?');
+            $queryReponse = mysqli_prepare($dbLink, 'SELECT ID,CONTENU FROM REPONSE WHERE ID_QUESTION = ?');
             mysqli_stmt_bind_param($queryReponse, "s", $idQuestion);
             mysqli_stmt_execute($queryReponse);
             $contenuReps = $queryReponse->get_result()->fetch_assoc();
             mysqli_stmt_close($queryReponse);
 
             var_dump($contenuReps);
-            return [ 'case' => 2, 'contenuRep' => $contenuReps['CONTENU']];
-
+            return [ 'case' => 2, 'contenuReps' => $contenuReps];
         }
         elseif ($repStyle == 3){
-            $queryReponse = mysqli_prepare($dbLink, 'SELECT IMG, IMG_LABEL FROM REPONSE WHERE ID_QUESTION = ?');
+            $queryReponse = mysqli_prepare($dbLink, 'SELECT ID, IMG, IMG_LABEL FROM REPONSE WHERE ID_QUESTION = ?');
             mysqli_stmt_bind_param($queryReponse, "s", $idQuestion);
             mysqli_stmt_execute($queryReponse);
             $contenuReps = $queryReponse->get_result()->fetch_assoc();
             mysqli_stmt_close($queryReponse);
 
             var_dump($contenuReps);
-            return [ 'case' => 3, 'img' => $contenuReps['IMG'], 'imgLabel' => $contenuReps['IMG_LABEL']];
+            return [ 'case' => 3, 'imgReps' => $contenuReps];
         }
 
         throw new Exception("Couldn't get response in database");
@@ -85,14 +84,14 @@ class QuestionnaireModel extends ModelCore {
         $dbLink = $this->connectBd();
 
         //On test si la reponse est de type slider
-        $queryReponse = mysqli_prepare($dbLink, 'SELECT CASE WHEN SLIDER IS NOT NULL THEN "True" ELSE "False" END bool_val FROM QUESTION WHERE ID = ?)');
+        $queryReponse = mysqli_prepare($dbLink, 'SELECT CASE WHEN SLIDER IS NOT NULL THEN "True" ELSE "False" END bool_val FROM QUESTION WHERE ID = ?');
         mysqli_stmt_bind_param($queryReponse, "s", $idQuestion);
         mysqli_stmt_execute($queryReponse);
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
-        var_dump($result);
-        if ($result) {
+        //var_dump($result);
+        if ($result['bool_val'] == 'True') {
             return 0;
         }
 
@@ -103,6 +102,7 @@ class QuestionnaireModel extends ModelCore {
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
+        //var_dump($result);
         if (! $result["EXISTS(SELECT * FROM REPONSE WHERE ID_QUESTION = ?)"]) {
             return 1;
         }
@@ -114,8 +114,8 @@ class QuestionnaireModel extends ModelCore {
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
-        var_dump($result);
-        if ($result[0]) {
+        //var_dump($result);
+        if ((bool) $result['bool_val'] == 'True') {
             return 2;
         }
 
@@ -126,11 +126,10 @@ class QuestionnaireModel extends ModelCore {
         $result = $queryReponse->get_result()->fetch_assoc();
         mysqli_stmt_close($queryReponse);
 
-        var_dump($result);
-        if ($result[0]) {
+        //var_dump($result);
+        if ((bool)$result['bool_val'] == 'True') {
             return 3;
         }
-
 
         //sinon on as pas réussie a reconnaître le type de reponse
         throw new Exception("Unrecognized response type (slider, champs libre, choix multiple text ou image)");

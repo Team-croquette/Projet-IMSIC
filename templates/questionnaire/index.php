@@ -12,7 +12,11 @@
 <?php require $header; ?>
 
 <!-- Body -->
-<div id="content"></div>
+<div id="content">
+    <?php echo $question; ?>
+    <?php echo $reponses; ?>
+    <a href="./">Question suivante</a>
+</div>
 
 <!-- Footer -->
 <?php require $footer; ?>
