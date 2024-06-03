@@ -55,7 +55,7 @@ class IndexAdminController extends AdminControllerCore{
         $formBuilder = new FormBuilder();
         $formBuilder
             ->setAction('./question/index.php')
-            ->setMethod('GET')
+            ->setMethod('POST')
             ->setClass('form')
             ->add('question','Intitulé de la question', InputTypeEnum::GROUP,false,'', [
                 'class' => 'question_group', 
@@ -64,16 +64,16 @@ class IndexAdminController extends AdminControllerCore{
                     new FormInput('image[0]','Ajouter des images à la question', InputTypeEnum::IMAGE,false),
                     new FormInput('imageDescription[0]','Description de l’image <small>(facultatif)</small>', InputTypeEnum::TEXTAREA,false),
                     new FormInput('image[1]','', InputTypeEnum::IMAGE,false),
-                    new FormInput('imageDescription[0]','Description de l’image <small>(facultatif)</small>', InputTypeEnum::TEXTAREA,false),
+                    new FormInput('imageDescription[1]','Description de l’image <small>(facultatif)</small>', InputTypeEnum::TEXTAREA,false),
                 ]
             ])
             ->add('reponse','Réponses autorisées :', InputTypeEnum::GROUP,false,'', [
                 'class' => 'reponse_group',
                 'children' => [
-                    new FormInput('questionType','Texte libre', InputTypeEnum::RADIO,false,'', ['id' => QuestionTypeEnum::FREE_TEXT->value]),
-                    new FormInput('questionType','Slider', InputTypeEnum::RADIO,false, '', ['id' => QuestionTypeEnum::SLIDER->value]),
-                    new FormInput('maxSlider','Max :', InputTypeEnum::NUMBER,false, '', ['id' => 'text']),
-                    new FormInput('questionType','Réponse sous forme d’images :', InputTypeEnum::RADIO,false, '', ['id' => QuestionTypeEnum::MULTI_IMAGE->value]),
+                    new FormInput('questionType','Texte libre', InputTypeEnum::RADIO,false,QuestionTypeEnum::FREE_TEXT->value, ['id' => QuestionTypeEnum::FREE_TEXT->value]),
+                    new FormInput('questionType','Slider', InputTypeEnum::RADIO,false, QuestionTypeEnum::SLIDER->value, ['id' => QuestionTypeEnum::SLIDER->value]),
+                    new FormInput('slider','Max :', InputTypeEnum::NUMBER,false, '', ['id' => 'text']),
+                    new FormInput('questionType','Réponse sous forme d’images :', InputTypeEnum::RADIO,false, QuestionTypeEnum::MULTI_IMAGE->value, ['id' => QuestionTypeEnum::MULTI_IMAGE->value]),
                     new FormInput('imageResp[0]','', InputTypeEnum::IMAGE,false),
                     new FormInput('imageRespDesc[0]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Description de l’image']),
                     new FormInput('imageResp[1]','', InputTypeEnum::IMAGE,false),
@@ -82,7 +82,7 @@ class IndexAdminController extends AdminControllerCore{
                     new FormInput('imageRespDesc[2]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Description de l’image']),
                     new FormInput('imageResp[3]','', InputTypeEnum::IMAGE,false),
                     new FormInput('imageRespDesc[3]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Description de l’image']),
-                    new FormInput('questionType','Réponse sous forme de texte à choisir :', InputTypeEnum::RADIO ,false, '', ['id' => QuestionTypeEnum::TEXT_CHOICE->value]),
+                    new FormInput('questionType','Réponse sous forme de texte à choisir :', InputTypeEnum::RADIO ,false, QuestionTypeEnum::TEXT_CHOICE->value, ['id' => QuestionTypeEnum::TEXT_CHOICE->value]),
                     new FormInput('choiseText[0]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Ecrire la réponse à choisir ici']),
                     new FormInput('choiseText[1]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Ecrire la réponse à choisir ici']),
                     new FormInput('choiseText[2]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Ecrire la réponse à choisir ici']),

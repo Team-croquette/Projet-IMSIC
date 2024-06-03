@@ -35,7 +35,7 @@ class FormBuilder{
     }
 
     public function renderForm(){
-        $formStart = '<form class="'.$this->class.'" action="'. $this->action . '" method="'.$this->method.'">'; 
+        $formStart = '<form class="'.$this->class.'" action="'. $this->action . '" method="'.$this->method.'" enctype="multipart/form-data" >'; 
 
         $innerForm = ''; 
                 
