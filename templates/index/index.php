@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMSIC Questionnaire - Accueil</title>
     <link rel="stylesheet" href="<?= $siteRoot; ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= $siteRoot; ?>assets/css/index.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/icon_question_mark.ico">
 </head>
 <body>

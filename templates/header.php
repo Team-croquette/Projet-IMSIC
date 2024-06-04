@@ -6,12 +6,12 @@
         const siteRoot = '<?= $siteRoot;?>';
     </script>
     <script src="<?= $siteRoot ?>assets/script/scriptCaptcha.js"></script>
-    <?php include 'templates/popupCaptcha/index.php' ?>
+    <?php include SITE_PATH .'/templates/popupCaptcha/index.php' ?>
     
     <a class="button" href="<?= $siteRoot ?>">
         <div id="left-part">
-                <img class="left-star" src="<?= $siteRoot; ?>assets/img/ask-question.png"/>
-                <span>IMSIC Questionnaire</span>
+            <img class="left-star" src="<?= $siteRoot; ?>assets/img/ask-question.png"/>
+            <span class="left-title">IMSIC Questionnaire</span>
         </div>
     </a>
 
