@@ -35,12 +35,12 @@ class FormBuilder{
     }
 
     public function renderForm(){
-        $formStart = '<form class="'.$this->class.'" action="'. $this->action . '" method="'.$this->method.'">'; 
+        $formStart = '<form class="'.$this->class.'" action="'. $this->action . '" method="'.$this->method.'" enctype="multipart/form-data" >'; 
 
         $innerForm = ''; 
                 
         foreach($this->inputs as $input){
-            $innerForm .= $input->renderInput();
+            $innerForm .= "\n" . $input->renderInput();
         }
 
         return $formStart . $innerForm . '</form>';

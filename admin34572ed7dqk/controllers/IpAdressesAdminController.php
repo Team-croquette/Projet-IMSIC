@@ -1,6 +1,6 @@
 <?php 
 
-class UserAdminController extends AdminControllerCore{
+class IpAdressesAdminController extends AdminControllerCore{
     private array $errors = [];
 
     public function __construct()
@@ -29,7 +29,7 @@ class UserAdminController extends AdminControllerCore{
             $this->errors[] = $e->getMessage();
         }
         if ($this->errors != []) {
-            $_SESSION['UserErrors'] = json_encode($this->errors);
+            $_SESSION['ipErrors'] = json_encode($this->errors);
         }
         header('Location: ../');
         return true;
@@ -38,16 +38,8 @@ class UserAdminController extends AdminControllerCore{
     private function executeAction($params){       
         switch ($params['action']) {
             case 'remove':
-                (new UserModel())->removeUser($params['id']);
+                (new IpAdressesModel())->removeIp($params['id']);
                 break;
-            case 'add':
-                if ($_GET['password'] != $params['confirm_password']) {
-                    $this->errors[] = 'Les mots de passe ne correspondent pas.';
-                    break;
-                }
-                (new UserModel())->addUser($params['login'],$params['password']);
-                break;
-
         }
     }
 }

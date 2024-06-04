@@ -5,6 +5,7 @@
 :root {
     --background: #F8F9FF;
     --modalBackground: #7EA7F8;
+    --borderColor: #E5F4F2;
     --white: #fff;
     --black: #000;
     --font: 'Poppins', sans-serif;
@@ -23,7 +24,7 @@ header {
         font-size: 18px;
         align-items: center;
 
-        #question {
+        #openPopupBtn {
             background-color: var(--black);
             color: var(--white);
             width: 11rem;
@@ -62,11 +63,22 @@ header {
     }
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background: var(--background);
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#void {
+    flex: 1;
 }
 
 /* Fin du style global de l'application */
@@ -76,6 +88,43 @@ body {
 .alert-error {
     padding: 0;
     margin: 0;
+}
+
+.desac-ip {
+    display: flex;
+    width: 95%;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 1rem 0 0 5%;
+
+    .admin-form_group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    select {
+        margin-right: 1rem;
+        border-radius: 14px;
+        width: 9rem;
+        font-weight: 500;
+        height: 3rem;
+    }
+
+    input[type="submit"] {
+        background-color: var(--black);
+        color: var(--white);
+        border-radius: 14px;
+        width: 9rem;
+        font-weight: 500;
+        height: 3rem;
+    }
 }
 
 /* Page de connexion */
@@ -122,8 +171,10 @@ body {
             background-color: var(--black);
             color: var(--white);
             width: 8rem;
-            height: 2rem;
+            height: 2.5rem;
+            font-size: 16px;
             border-radius: 10px;
+            padding: 0.5rem 0.5rem;
         }
     }
 
@@ -158,7 +209,7 @@ body {
         flex: 1;
 
         .title {
-            font-size: 30px;
+            font-size: 43px;
             font-weight: 600;
         }
     }
@@ -229,16 +280,27 @@ body {
     }
 }
 
+.addQuestion {
+    form {
+        display: flex;
+        align-items: flex-start;
+        overflow-y: scroll;
+        height: 20rem;
+    }
+}
+
 .gestion {
     display: flex;
     width: 95%;
     align-items: flex-start;
     flex-direction: column;
-    padding: 1rem 0 0 5%;
+    padding: 1rem 0 1rem 5%;
 
     .gestion__top {
         .gestion__top--title {
             h2 {
+                font-weight: 600;
+                font-size: 27px;
                 margin-bottom: 0;
             }
 
@@ -319,6 +381,19 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    z-index: 3;
+
+    .left-star {
+        position: absolute;
+        top: 20%;
+        left: 54%;
+    }
+
+    .right-star {
+        position: absolute;
+        top: 35%;
+        left: 75%;
+    }
 
 
     .modal_body {
@@ -335,12 +410,29 @@ body {
             .form {
                 display: flex;
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1rem;
 
                 .admin-form_group {
                     display: flex;
                     gap: 1rem;
                     flex-direction: column;
+                }
+
+                input[type=password], input[type=text] {
+                    border-radius: 10px;
+                    border: 1px solid var(--black);
+                    width: 18rem;
+                    height: 2rem;
+                }
+
+                input[type="submit"] {
+                    background-color: var(--black);
+                    color: var(--white);
+                    width: 8rem;
+                    height: 2.5rem;
+                    font-size: 16px;
+                    border-radius: 10px;
+                    padding: 0.5rem 0.5rem;
                 }
             }
 
@@ -350,14 +442,148 @@ body {
     }
 }
 
+.addQuestion {
+
+    .modal_body .modal__form .form {
+        flex-direction: row;
+    }
+}
+
+/** Home **/
+.home {
+    .sub-header {
+        height: 20rem;
+    }
+}
+
+#home-imsic, #start {
+    width: 11rem;
+    height: 2rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0.5rem 0.5rem;
+
+    img {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+#start {
+    background-color: var(--black);
+    color: var(--white);
+    width: 7rem;
+}
+
+#home-imsic {
+    background-color: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+}
+
+#home-buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.home-content {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 2rem 2rem 5%;
+
+    .home-content__left {
+        width: 50%;
+
+        .top-left {
+            height: 50%;
+
+            .left-star {
+                width: 5rem;
+                margin: 5% 0 0 15%;
+            }
+        }
+
+        .bot-left {
+            height: 50%;
+            display: flex;
+            justify-content: center;
+
+            .bot {
+                width: 22rem;
+                height: 11rem;
+                background-color: var(--black);
+                border-top-left-radius: 90px;
+                border-top-right-radius: 90px;
+            }
+        }
+    }
+
+    .home-content__right {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+        span {
+            font-weight: 600;
+            font-size: 27px;
+        }
+
+        p {
+            width: 90%;
+        }
+
+        .list {
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            gap: 4rem;
+
+            div {
+                gap: 0.5rem;
+                display: flex;
+                padding: 15px 2rem 15px 1rem;
+                border: 1px solid var(--borderColor);
+                background-color: var(--white);
+                border-radius: 10px;
+                align-items: center;
+                justify-content: flex-start;
+                width: 9rem;
+
+                .icon {
+                    width: 2rem;
+                    padding: 2px;
+                    height: 2rem;
+                    background-color: var(--modalBackground);
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+}
+
+.button {
+    text-decoration: none;
+    user-select: none;
+    color: black;
+}
+
+.button :hover {
+    cursor: pointer;
+}
+
 /** Footer **/
 footer {
     background-color: black;
     color: white;
     padding: 60px 0;
-    position: relative;
     bottom: 0;
     width: 100%;
+    position: relative;
 }
 
 .footer-content {
@@ -366,7 +592,7 @@ footer {
     padding: 0 50px;
 }
 
-.footer-content a{
+.footer-content a {
     text-decoration: none;
     color: white;
 }

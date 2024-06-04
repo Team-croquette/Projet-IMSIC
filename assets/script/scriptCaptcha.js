@@ -19,12 +19,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
-
-
 function recaptchaCallback(response) {
     if (response) {
-        // Effectuer la vérification du captcha via AJAX
-        fetch('', {
+        //vérification du captcha via AJAX
+        fetch(siteRoot+'/verifCaptcha/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -33,11 +31,10 @@ function recaptchaCallback(response) {
         })
             .then(response => response.text())
             .then(data => {
-                if (parseInt(data) === 1){
-                    document.location.href="ggReussi.php";
+                if (parseInt(data) === 1) {
+                    document.location.href = "ggReussi.php"; //a modifier pour la page questionnaire
                 } else {
-                    alert("Problème lors de la validation du reCaptcha");
-
+                    alert("Problème lors de la validation du Captcha");
                 }
                 document.getElementById('popup').style.display = 'none'; // Ferme le popup en cas de succès
                 grecaptcha.reset();
