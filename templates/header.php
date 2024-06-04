@@ -4,6 +4,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="text/javascript">
         const siteRoot = '<?= $siteRoot;?>';
+        const $templatesRoot = '<?= $templatesRoot;?>';
     </script>
     <script src="<?= $siteRoot ?>assets/script/scriptCaptcha.js"></script>
     <?php include 'templates/popupCaptcha/index.php' ?>
@@ -14,7 +15,6 @@
                 <span>IMSIC Questionnaire</span>
         </div>
     </a>
-
     <div id="right-part" class="button">
         <a id="openPopupBtn" <?= $resultSecuIp; ?>><img class="left-star" src="<?= $siteRoot; ?>assets/img/Help.png"/>Questionnaire</a>
     </div>
