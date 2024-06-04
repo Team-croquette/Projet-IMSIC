@@ -42,7 +42,7 @@
     <?php echo $question; ?>
     <?php echo $reponses; ?>
 </div>
-
+<div id="void"></div>
 <!-- Footer -->
 <?php require $footer; ?>
 

@@ -15,7 +15,7 @@
         <div class="left-part">
             <span class="title">Avant de répondre au <br>questionnaire</span>
             <p>Merci de prendre connaissances des conditions générales d'utilisation ci-dessous.<br>
-                Les résultats sont anonymes et ne éseront pas utilisés à des fins commerciales.
+                Les résultats sont anonymes et ne seront pas utilisés à des fins commerciales.
             </p>
 
             <div id="home-buttons">

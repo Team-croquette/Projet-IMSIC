@@ -16,7 +16,6 @@ class QuestionnaireDebutController extends ControllerCore
             $this->proccessForm();
         }
         $this->renderTemplate($this->getTemplateVariables());
-        //$this->renderTemplate();
         return true;
     }
 
@@ -26,6 +25,8 @@ class QuestionnaireDebutController extends ControllerCore
         $formBuilder
             ->add('checkbox','En cliquant ici, j\'accepte les conditions générales d\'utilisation : ', InputTypeEnum::CHECKBOX,true)
             ->add('submit','', InputTypeEnum::SUBMIT,true,'Valider');
+
+        $formBuilder->setAction('../questionnaire/index.php');
 
         return $formBuilder->renderForm();
     }

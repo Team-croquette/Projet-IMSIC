@@ -51,7 +51,7 @@ if(isset($_SESSION['VerifIp'])) {
 
             if ($_SESSION['currentQuestion'] >= sizeof($listIdQuest)){
                 session_destroy();
-                header('Location: ../');
+                header('Location: ../questionnaireFin/index.php');
             }
 
             $controller = ControllerCore::getInstanceByName(basename(__DIR__));
