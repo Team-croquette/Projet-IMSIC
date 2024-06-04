@@ -57,7 +57,6 @@ class UserModel extends ModelCore{
         if ($login == $_SESSION['login']) {
             return false;
         }
-        $users = [];
         $dbLink = $this->connectBd();
         $query = $dbLink->prepare('DELETE FROM COMPTES WHERE `identifiant`=?');
         $query->bind_param('s',$login);
