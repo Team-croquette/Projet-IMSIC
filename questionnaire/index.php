@@ -17,7 +17,7 @@ foreach(glob('../modeles/*.php') as $fileName){
 $resultMod = new ResultatModel();
 $questMod = new QuestionnaireModel();
 //dump($_SESSION);
-var_dump($_POST);
+//var_dump($_POST);
 if(isset($_SESSION['VerifIp'])) {
     if($_SESSION['VerifIp']) {
         if (isset($_SESSION['idClient'])) {
