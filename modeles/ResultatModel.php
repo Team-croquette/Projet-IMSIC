@@ -19,10 +19,10 @@ class ResultatModel extends ModelCore {
         if ($idRep != Null and $Rep != Null) {
             throw new \http\Exception\InvalidArgumentException("Mettre un seul argument (idRep ou Rep)");
         } elseif ($idRep != Null) {
-            $queryReponse = mysqli_prepare($dbLink, 'INSERT Into RESULTAT(ID_QUESTION, ID_CLIENT, ID_REPONSE) Values (?, ?);');
+            $queryReponse = mysqli_prepare($dbLink, 'INSERT Into RESULTAT(ID_QUESTION, ID_CLIENT, ID_REPONSE) Values (?, ?, ?);');
             mysqli_stmt_bind_param($queryReponse, "sss", $idQuest, $idClient, $idRep);
         } elseif ($Rep != Null) {
-            $queryReponse = mysqli_prepare($dbLink, 'INSERT Into DESAC_IP(ID_QUESTION, ID_CLIENT, REPONSE) Values (?, ?);');
+            $queryReponse = mysqli_prepare($dbLink, 'INSERT Into RESULTAT(ID_QUESTION, ID_CLIENT, REPONSE) Values (?, ?, ?);');
             mysqli_stmt_bind_param($queryReponse, "sss", $idQuest, $idClient, $Rep);
         } else {
             throw new \http\Exception\InvalidArgumentException("Argument idRep ou Rep manquant");

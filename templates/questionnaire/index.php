@@ -15,7 +15,6 @@
 <div id="content">
     <?php echo $question; ?>
     <?php echo $reponses; ?>
-    <a href="./">Question suivante</a>
 </div>
 
 <!-- Footer -->

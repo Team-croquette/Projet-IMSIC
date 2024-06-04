@@ -18,18 +18,11 @@ class QuestionnaireController extends ControllerCore
     {
         $questMod = new QuestionnaireModel();
         $listIdQuest = $questMod->getAllQuestionsID();
-        if ($_SESSION['currentQuestion'] > sizeof($listIdQuest)){
-            session_destroy();
-            header('Location: ../');
-        }
         $idQuestion = $listIdQuest[$_SESSION['currentQuestion']];
 
         $question = $this->traitementQuestion($questMod->getQuestion($idQuestion));
         $reponses = $this->traitementReponses($questMod->getRepFromQuest($idQuestion));
 
-
-
-        $_SESSION['currentQuestion'] ++;
         $this->renderTemplate($this->getTemplateVariables($question, $reponses));
         return true;
     }
@@ -71,6 +64,7 @@ class QuestionnaireController extends ControllerCore
                 alt="' . $retourBD['IMG_SECOND_DESC'].'"/>';
         }
         $numQuestion = $_SESSION['currentQuestion']+1;
+        //var_dump($numQuestion);
         $htmlQuestion .= "   
             </div>
             <div class='right-panel'>
@@ -122,14 +116,14 @@ class QuestionnaireController extends ControllerCore
             case 2:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label> Selectionner une ou plusieurs reponses :</label>';
+                        <label> Choix possibles :</label>';
 
                 $i = 0;
                 foreach ($retourBD['contenuReps'] as $row) {
-                    var_dump($row);
+                    //var_dump($row);
                     $htmlReponses .= '
                     <div class="reponse">
-                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="" required>
+                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="">
                         <label for="rep' . $i . '">' . $row['CONTENU'] . '</label>
                     </div>';
                     ++$i;
@@ -142,13 +136,13 @@ class QuestionnaireController extends ControllerCore
             case 3:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label>Selectionner une ou plusieurs images :</label>';
+                        <label>Choix possibles :</label>';
 
                 $i = 0;
                 foreach ($retourBD['imgReps'] as $row) {
                     $htmlReponses .= '
                     <div class="reponse">
-                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="" required>
+                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="">
                         <label for="rep' . $i . '">' .
                         '<img id="img' . $i . 'Rep" src= "data:image/*;base64,'.$row['IMG'].'"
                             alt="' . $row['IMG_LABEL'].'"/>' .
