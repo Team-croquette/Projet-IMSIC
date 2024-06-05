@@ -1,0 +1,91 @@
+.showModal{
+    cursor: pointer;
+}
+
+.desac-ip {
+    input[type="submit"]{
+        cursor: pointer;
+    }
+}
+
+.gestion__content {
+    .content{
+        padding-inline-start: 3rem;
+        padding-inline-end: 1rem;
+    }
+}
+.form-tempo{
+    gap: 1rem;
+}
+.tempo_group{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 900px){
+    .sub-header{
+        position: relative;
+    }
+    #adminConnect{
+        flex-direction: column-reverse;
+        height: unset;
+        padding-top: 1rem;
+
+        & #form {
+            & .admin-form_group {
+                input {
+                    width: unset;
+                }
+            }
+            form{
+                padding: 2rem;
+            }
+        }
+        
+        & #text {
+            .right-star {
+                margin-left: 0;
+                align-self: flex-start;
+            }
+            .left-star {
+                margin-right: 0;
+                align-self: flex-end;
+            }
+        }
+    }   
+    
+    .gestion {
+        & .gestion__top {
+            & .gestion__top--title {
+                .gestion_button{
+                    flex-direction: column;
+                    align-items: start;
+                    text-align: left;
+                }
+            }
+        }
+    }
+    header {
+        & div {
+            #openPopupBtn{
+                width: unset;
+                span{
+                    display: none;
+                }
+            }
+        }
+    }
+    .gestion__top{
+        width: 100%;
+    }
+    .gestion__content {
+        width: 100%;
+        & .content {
+            max-width: 100%;
+            li {
+                width: 100%;
+            }
+        }
+    }
+}
+ 
