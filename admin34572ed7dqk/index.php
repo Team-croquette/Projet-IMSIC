@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use classes\ModelCore;
 
 session_start();
 
@@ -8,7 +10,6 @@ foreach(glob('./classes/*.php') as $fileName){
         require_once $fileName;
     }
 }
-
 foreach(glob('./enum/*.php') as $fileName){
 
     if (!str_contains($fileName,'index.php')) {
@@ -16,9 +17,10 @@ foreach(glob('./enum/*.php') as $fileName){
     }
 }
 
+
 foreach(glob('./modeles/*.php') as $fileName){
 
-    if (!str_contains($fileName,'index.php') && !str_contains($fileName,'ModelCore.php')) {
+    if (!str_contains($fileName,'index.php')) {
         require_once $fileName;
     }
 }

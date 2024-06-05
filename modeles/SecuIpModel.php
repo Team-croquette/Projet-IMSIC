@@ -1,4 +1,6 @@
 <?php
+
+
 class SecuIpModel extends ModelCore {
 
     public function ipUsed($ip): bool {
