@@ -8,7 +8,7 @@ class SecuIpController extends ControllerCore
 {
     protected string $name;
 
-    protected $info; //état du lien vers le questionnaire (class = "disabled|enabled")
+    protected $info;
 
 
     public function getInfo()

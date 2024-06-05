@@ -3,6 +3,7 @@
 $basePath = explode('classes',dirname(__FILE__))[0];
 define('BASE_PATH', $basePath);
 define('SITE_PATH', $basePath);
+define('ADMIN_PATH',$basePath.'/admin34572ed7dqk/');
 
 if (!file_exists(BASE_PATH . '/.env')) {
     throw new Exception("Le fichier .env n'existe pas.");
