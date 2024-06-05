@@ -31,11 +31,16 @@ class VerifCaptchaController extends ControllerCore
             $result = file_get_contents($url, false, $context);
             $resultJson = json_decode($result);
             if (!$resultJson->success) {
+                var_dump("TEST1");
                 echo 0;
             } else {
+                $_SESSION['VerifCapcha'] = true;
                 echo 1;
             }
         } else {
+            var_dump($_SERVER['REQUEST_METHOD']);
+            var_dump($_SERVER);
+            var_dump("TEST2");
             echo 0;
         }
         return true;

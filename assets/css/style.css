@@ -456,7 +456,7 @@ body {
     }
 }
 
-#home-imsic, #start {
+#home-imsic, #start, input[name="submit"] {
     width: 11rem;
     height: 2rem;
     border-radius: 10px;
@@ -472,7 +472,11 @@ body {
     }
 }
 
-#start {
+input[name="submit"] {
+    margin-top: 2em;
+}
+
+#start, input[name="submit"] {
     background-color: var(--black);
     color: var(--white);
     width: 7rem;

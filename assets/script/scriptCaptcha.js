@@ -33,7 +33,7 @@ function recaptchaCallback(response) {
             .then(response => response.text())
             .then(data => {
                 if (parseInt(data) === 1) {
-                    document.location.href = siteRoot+"questionnaire"; //a modifier pour la page questionnaire
+                    document.location.href = siteRoot+"questionnaireDebut"; //a modifier pour la page questionnaire
                 } else {
                     alert("Problème lors de la validation du Captcha");
                 }

@@ -2,6 +2,15 @@
 
 session_start();
 
+if (isset($_SESSION["VerifCapcha"])){
+    if (!$_SESSION["VerifCapcha"]){
+        header("Location: ../index.php");
+    }
+}
+else{
+    header("Location: ../index.php");
+}
+
 foreach(glob('../classes/*.php') as $fileName){
 
     if (!str_contains($fileName,'index.php')) {
