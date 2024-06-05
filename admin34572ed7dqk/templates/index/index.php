@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Accès Espace Administrateur</title>
-    <link rel="stylesheet" href="<?= $siteRoot; ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= $siteRoot; ?>assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= $siteRoot; ?>admin34572ed7dqk/assets/scripts/modal.js"></script>
+    <link rel="icon" type="image/x-icon" href="./assets/img/icon_question_mark.ico">
+    <script src="<?= $adminRoot; ?>/assets/scripts/confirm-delete.js"></script>
 </head>
 
 <body>
-<?php require_once $templatesRoot . 'header.php'; ?>
+    <?php require_once $templatesRoot . 'header.php'; ?>
 
     <!-- Sub Header -->
     <div class="sub-header">
@@ -24,8 +26,9 @@
         <div class="right-part">
             <div class="top">
                 <div class="top-left">
-                    <img src="<?= $siteRoot; ?>/assets/img/white-star.png" class="left-star" alt="white-star">
-                    <img src="<?= $siteRoot; ?>/assets/img/black-star.png" class="right-star" alt="black-star"></div>
+                    <img src="<?= $siteRoot; ?>assets/img/white-star.png" class="left-star" alt="white-star">
+                    <img src="<?= $siteRoot; ?>assets/img/black-star.png" class="right-star" alt="black-star">
+                </div>
                 <div class="top-right">
 
                 </div>
@@ -33,12 +36,62 @@
 
             <div class="bot">
                 <!--
-                <a id="imsic-link" href="https://www.imsic.fr/"><img class="left-star" src="<?= $siteRoot; ?>/assets/img/Help.png"/>L’IMSIC c’est quoi ?</a>
+                <a id="imsic-link" href="https://www.imsic.fr/"><img class="left-star" src="<?= $siteRoot; ?>assets/img/Help.png"/>L’IMSIC c’est quoi ?</a>
                 !-->
             </div>
         </div>
     </div>
+
+    <div class="desac-ip">
+        <div class="desac-ip__error">
+            <ul class="alert-error">
+                <?php
+                foreach ($ipErrors as $message) {
+                ?>
+                    <li>
+                        <?= $message; ?>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+            <?= $addDesacIpForm ?>
+        </div>
+    </div>
     <!-- End Sub Header -->
+
+    <div class="gestion">
+        <div class="gestion__top">
+            <div class="gestion__top--title">
+                <h2>Gestion des adresses ip</h2>
+                <div class="gestion_button">
+                    <span>Vous pouvez supprimer des ip.</span>
+                </div>
+            </div>
+            <div class="gestion__content">
+                <ul class="alert-error">
+                    <?php
+                    foreach ($ipErrors as $message) {
+                    ?>
+                        <li>
+                            <?= $message; ?>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+                <ul class="content">
+                    <?php foreach ($ipAdresses as $ip) { ?>
+                        <li>
+                            <span><?= $ip['ip'] ?></span>
+                            <span><?= $ip['date_last_co'] ?></span>
+                            <a href="<?= $adminRoot ?>/ipAdresses/?action=remove&id=<?= $ip['ip'] ?>"><img class="trash" src="<?= $siteRoot; ?>assets/img/Empty_Trash.png" />Supprimer</a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
     <?php if ($owner) { ?>
 
         <div class="gestion">
@@ -68,7 +121,7 @@
                                 <span><?= $user['identifiant'] ?></span>
                                 <span><?= $user['date'] ?></span>
                                 <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                                    <a href="<?= $siteRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img class="trash" src="<?= $siteRoot; ?>/assets/img/Empty_Trash.png" />Supprimer</a>
+                                    <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>"><img class="trash" src="<?= $siteRoot; ?>assets/img/Empty_Trash.png" />Supprimer</a>
                                 <?php } else {
                                 ?>
                                     <div></div>
@@ -95,6 +148,9 @@
                         </ul>
                     </div>
                 </div>
+                <!-- stars -->
+                <img src="<?= $siteRoot; ?>assets/img/white-star.png" class="left-star" alt="white-star">
+                <img src="<?= $siteRoot; ?>assets/img/black-star.png" class="right-star" alt="black-star">
             </div>
         </div>
 
@@ -103,9 +159,12 @@
         <div class="gestion__top">
             <div class="gestion__top--title">
                 <h2>Gestion du questionnaire</h2>
-                <h3>Vous pouvez ajouter ou supprimer des questions.</h3>
+                <div class="gestion_button">
+                    <span>Vous pouvez ajouter ou supprimer des questions.</span>
+                    <button class="showModal" data-form-name="addQuestion">Ajouter une question</button>
+                </div>
             </div>
-            <button class="showModal" data-form-name="addQuestion">Ajouter une question</button>
+
         </div>
         <div class="gestion__content">
             <ul class="alert-error">
@@ -119,14 +178,11 @@
                 }
                 ?>
             </ul>
-            <ul>
+            <ul class="content">
                 <?php foreach ($questions as $question) { ?>
                     <li>
-                        <span><?= $user['identifiant'] ?></span>
-                        <span><?= $user['date'] ?></span>
-                        <?php if ($user['identifiant'] != $_SESSION['login']) { ?>
-                            <a href="<?= $adminRoot ?>/user/?action=remove&id=<?= $user['identifiant'] ?>">Supprimer</a>
-                        <?php } ?>
+                        <span><?= $question['libelle'] ?></span>
+                        <a href="<?= $adminRoot ?>/question/?action=remove&id=<?= $question['id'] ?>"><img class="trash" src="<?= $siteRoot; ?>assets/img/Empty_Trash.png" />Supprimer</a>
                     </li>
                 <?php } ?>
             </ul>
@@ -139,18 +195,7 @@
             </div>
         </div>
     </div>
-</div>
-<div class="gestion">
-    <div class="gestion__top">
-        <div class="gestion__top--title">
-            <h2>Gestion des réponses</h2>
-            <div class="gestion_button">
-                <span>Vous pouvez exporter les données.</span>
-                <a href="<?= $adminRoot; ?>/exportCSV">Exporter les réponses</a>
-            </div>
-        </div>
-    </div>
-</div>
 </body>
 <?php require_once $templatesSiteRoot . 'footer.php'; ?>
+
 </html>
