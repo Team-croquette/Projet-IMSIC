@@ -48,7 +48,7 @@ class FormInput{
                 break;
             
             case InputTypeEnum::IMAGE :
-                $prefix = '<input type="file" accept="image/*" ';
+                $prefix = '<input type="file" accept=".png,.jpeg,.jpg,.gif,.webp" ';
                 break;
             case InputTypeEnum::GROUP :
                 $prefix = '<div ';
@@ -62,6 +62,9 @@ class FormInput{
                 $prefix = '<textarea ';
                 $innerHtml = '>' . $this->defaultValue;
                 $suffix = '</textarea>';
+                break;
+            case InputTypeEnum::LABEL :
+                
                 break;
             case InputTypeEnum::RADIO :
                 $for = isset($this->extra['id']) ? $this->extra['id'] : $this->name;
@@ -83,9 +86,15 @@ class FormInput{
         if ($this->required) {
             $attributes .= ' required="required"';
         }
-
+        $groupClass = '';
+        if(isset($this->extra['class']) && $this->type == InputTypeEnum::GROUP) {
+            $groupClass = $this->extra['class'];
+        }
+        if ($this->type == InputTypeEnum::LABEL) {
+            return '<label class="admin-form_label"'. $attributes. '>'.$this->label.'</label>';
+        }
         $value = isset($_POST[$this->name]) ? $_POST[$this->name] : $this->defaultValue;
-        $html = '<div class="admin-form_group">'.$label . $prefix . 'name="'.$this->name.'"' . ' value="'.$value.'"' . $attributes . $innerHtml . $suffix.'</div>';
+        $html = '<div class="admin-form_group '.$groupClass.'">'.$label . $prefix . 'name="'.$this->name.'"' . ' value="'.$value.'"' . $attributes . $innerHtml . $suffix.'</div>';
 
         return $html;
     }
