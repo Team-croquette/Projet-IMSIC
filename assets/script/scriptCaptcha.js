@@ -19,10 +19,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+
 function recaptchaCallback(response) {
     if (response) {
         //vérification du captcha via AJAX
-        fetch(siteRoot+'/verifCaptcha/', {
+        fetch(siteRoot+'verifCaptcha/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -32,7 +33,7 @@ function recaptchaCallback(response) {
             .then(response => response.text())
             .then(data => {
                 if (parseInt(data) === 1) {
-                    document.location.href = "ggReussi.php"; //a modifier pour la page questionnaire
+                    document.location.href = siteRoot+"questionnaire"; //a modifier pour la page questionnaire
                 } else {
                     alert("Problème lors de la validation du Captcha");
                 }

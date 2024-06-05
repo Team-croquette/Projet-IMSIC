@@ -13,4 +13,5 @@ enum InputTypeEnum: string{
     case RADIO = 'radio';
     case NUMBER = 'number';
     case LABEL = 'label';
+    case CHECKBOX = 'checkbox';
 }
