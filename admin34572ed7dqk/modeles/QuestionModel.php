@@ -1,5 +1,7 @@
 <?php
 
+use classes\ModelCore;
+
 class QuestionModel extends ModelCore{
 
     public function getAllQuestion():array

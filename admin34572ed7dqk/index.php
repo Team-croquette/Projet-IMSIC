@@ -15,6 +15,7 @@ foreach(glob('./enum/*.php') as $fileName){
         require_once $fileName;
     }
 }
+
 foreach(glob('./modeles/*.php') as $fileName){
 
     if (!str_contains($fileName,'index.php')) {
