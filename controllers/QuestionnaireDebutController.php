@@ -26,7 +26,7 @@ class QuestionnaireDebutController extends ControllerCore
             ->add('checkbox','En cliquant ici, j\'accepte les conditions générales d\'utilisation : ', InputTypeEnum::CHECKBOX,true)
             ->add('submit','', InputTypeEnum::SUBMIT,true,'Valider');
 
-        $formBuilder->setAction('../questionnaire/index.php');
+        $formBuilder->setAction('../questionnaireDebut/index.php');
 
         return $formBuilder->renderForm();
     }
@@ -43,15 +43,13 @@ class QuestionnaireDebutController extends ControllerCore
     private function proccessForm(){
 
         try {
-            if (!(isset($_POST['login']) && isset($_POST['password']) && $this->accountExist($_POST['login'],$_POST['password']))) {
-                throw new Exception("L'identifiant ou le mot de passe est incorrect. Veuillez réessayer.", 1);
+            if (!(isset($_POST['checkbox']) && $_POST['checkbox'] == 'on')) {
+                var_dump($_POST['checkbox']);
+                header('Location: ../questionnaireDebut/index.php');
             }
 
-            $_SESSION['token'] = $this->getToken($_POST['login']);
-            $_SESSION['login'] = $_POST['login'];
-
-            header('Location: ../index.php');
-            die;
+            $_SESSION['conditions-generales'] = true;
+            header('Location: ../questionnaire/index.php');
         } catch (\Throwable $th) {
             $this->errors[] = $th->getMessage();
         }

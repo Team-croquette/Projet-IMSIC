@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= $siteRoot ?>assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/img/icon_question_mark.ico">
     <title>Votre titre</title>
 </head>
 <body>
@@ -17,6 +18,7 @@
         <span class="title">Le questionnaire</span>
         <p>Pour nous aider à évaluer et comparer les perceptions de la valeur de l'information entre les
             journalistes/professionnels de l'information et le grand public</p>
+
         <div id="home-buttons">
 
         </div>
