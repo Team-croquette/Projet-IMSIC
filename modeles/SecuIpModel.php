@@ -1,6 +1,5 @@
 <?php
 
-use classes\ModelCore;
 
 class SecuIpModel extends ModelCore {
 

@@ -1,7 +1,5 @@
 <?php
 
-use classes\ModelCore;
-
 class UserModel extends ModelCore{
 
     public function userExist(string $login, string $inputPassword):bool

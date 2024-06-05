@@ -1,7 +1,5 @@
 <?php
 
-use classes\ModelCore;
-
 class ExportCSVmodel extends ModelCore
 {
 

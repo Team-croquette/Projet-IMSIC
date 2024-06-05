@@ -1,7 +1,5 @@
 <?php
 
-use classes\ModelCore;
-
 class QuestionModel extends ModelCore{
 
     const QUESTION_FIELDS = ['libelle', 'image', 'imageDescription', 'slider'];
