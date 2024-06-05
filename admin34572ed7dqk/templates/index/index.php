@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <title>Accès Espace Administrateur</title>
     <link rel="stylesheet" href="<?= $siteRoot; ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= $adminRoot; ?>assets/css/admin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= $siteRoot; ?>admin34572ed7dqk/assets/scripts/modal.js"></script>
     <link rel="icon" type="image/x-icon" href="./assets/img/icon_question_mark.ico">
     <script src="<?= $adminRoot; ?>/assets/scripts/confirm-delete.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Accès Espace Administrateur</title>
     <link rel="stylesheet" href="<?= $siteRoot; ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= $adminRoot; ?>assets/css/admin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../../assets/img/icon_question_mark.ico">
 </head>
 <body>
