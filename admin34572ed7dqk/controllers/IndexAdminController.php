@@ -150,13 +150,17 @@ class IndexAdminController extends AdminControllerCore{
         $formBuilder
             ->setAction('./secuIp/index.php')
             ->setMethod('POST')
-            ->setClass('form')
-            ->add('action','', InputTypeEnum::HIDDEN,true,'desactivate')
-            ->add('tempo[0]','Augmenter temporairement la limite de personnes pouvant répondre de cette durée :', InputTypeEnum::SELECT,false,'0',$hours)
-            ->add('tempo[1]','', InputTypeEnum::SELECT,false,'0',$minutes)
-            ->add('tempo[2]','', InputTypeEnum::SELECT,false,'0',$secondes)
-            ->add('submit','', InputTypeEnum::SUBMIT,true,'Valider');
-
+            ->setClass('form form-tempo')
+            ->add('action','Augmenter temporairement la limite de personnes pouvant répondre de cette durée :', InputTypeEnum::HIDDEN,true,'desactivate')
+            ->add('tempoGroup', '', InputTypeEnum::GROUP,false,'', [
+                'class' => 'tempo_group',
+                'children' => [
+                    new FormInput('tempo[0]','', InputTypeEnum::SELECT,false,'0',$hours),
+                    new FormInput('tempo[1]','', InputTypeEnum::SELECT,false,'0',$minutes),
+                    new FormInput('tempo[2]','', InputTypeEnum::SELECT,false,'0',$secondes),
+                    new FormInput('submit','', InputTypeEnum::SUBMIT,true,'Valider'),
+                ]
+            ]);
         return $formBuilder->renderForm();
     }
 }
