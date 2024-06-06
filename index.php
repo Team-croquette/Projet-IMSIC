@@ -1,5 +1,9 @@
 <?php 
 
+session_start();
+
+//$_SESSION['VerifCapcha'] = true;
+
 foreach(glob('./classes/*.php') as $fileName){
     if (!str_contains($fileName,'index.php')) {
         require_once $fileName;
