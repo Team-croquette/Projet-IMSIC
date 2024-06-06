@@ -20,7 +20,7 @@
                 journalistes/professionnels de l'information et le grand public</p>
 
             <div id="home-buttons">
-                <a id="start" class="button" href="https://www.imsic.fr/">
+                <a id="start" class="button" href="#">
                     <img class="left-star" src="<?= $siteRoot; ?>assets/img/RocketLaunch.png"/>C’est parti</a>
                 <a id="home-imsic" class="button" href="https://www.imsic.fr/">L’IMSIC c’est quoi ?</a>
             </div>

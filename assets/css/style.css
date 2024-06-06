@@ -662,7 +662,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 950px) {
+*@media screen and (max-width: 950px) {
     .sub-header {
         & .right-part {
             & .top {
@@ -842,4 +842,11 @@ footer {
     width: 90%;
     height: 100px;
     padding: 1em;
+}
+
+#captcha-container{
+    padding: 0;
+    div{
+        padding: 0;
+    }
 }
