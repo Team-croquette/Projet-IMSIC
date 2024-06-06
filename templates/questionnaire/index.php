@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= $siteRoot ?>assets/css/style.css">
-    <link rel="icon" type="image/x-icon" href="../../assets/img/icon_question_mark.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/img/icon_question_mark.ico">
     <title>Votre titre</title>
 </head>
 <body>
@@ -41,8 +41,10 @@
 
 <!-- Body -->
 <div id="content">
-    <?php echo $question; ?>
-    <?php echo $reponses; ?>
+    <div class="title-question" name="test">
+        <?php echo $question; ?>
+    </div>
+    <div name="zer"><?php echo $reponses; ?></div>
 </div>
 <div id="void"></div>
 <!-- Footer -->
