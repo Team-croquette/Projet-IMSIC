@@ -157,7 +157,7 @@
         </div>
 
     <?php } ?>
-    <div class="gestion">
+    <div class="gestion gestion--question">
         <div class="gestion__top">
             <div class="gestion__top--title">
                 <h2>Gestion du questionnaire</h2>

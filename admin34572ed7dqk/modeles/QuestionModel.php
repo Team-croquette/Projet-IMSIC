@@ -17,6 +17,9 @@ class QuestionModel extends ModelCore{
         $result = $query->get_result();
 
         while ($row = $result->fetch_assoc()) {
+            /*if (strlen($row['libelle']) > 18) {
+                $row['libelle'] = substr($row['libelle'], 0, 18) . '[...]';
+            }*/
             $questions[] = $row;
         }
 
