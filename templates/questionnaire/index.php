@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= $siteRoot ?>assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/img/icon_question_mark.ico">
     <title>Votre titre</title>
 </head>
 <body>
@@ -17,6 +18,7 @@
         <span class="title">Le questionnaire</span>
         <p>Pour nous aider à évaluer et comparer les perceptions de la valeur de l'information entre les
             journalistes/professionnels de l'information et le grand public</p>
+
         <div id="home-buttons">
 
         </div>
@@ -38,11 +40,22 @@
 <!-- End Sub Header -->
 
 <!-- Body -->
-<div id="content">
-    <?php echo $question; ?>
-    <?php echo $reponses; ?>
+<div class="home-content">
+    <div class="home-content__left">
+        <div class="top-left">
+            <img src="<?= $siteRoot; ?>assets/img/blue-star.png" class="left-star" alt="white-star">
+        </div>
+        <div class="bot-left">
+            <div class="bot"></div>
+        </div>
+    </div>
+    <div class="home-content__right">
+        <?php echo $question; ?>
+        <?php echo $reponses; ?>
+    </div>
 </div>
 
+<div id="void"></div>
 <!-- Footer -->
 <?php require $footer; ?>
 

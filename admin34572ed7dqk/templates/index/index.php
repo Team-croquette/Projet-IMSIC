@@ -158,7 +158,7 @@
         </div>
 
     <?php } ?>
-    <div class="gestion">
+    <div class="gestion gestion--question">
         <div class="gestion__top">
             <div class="gestion__top--title">
                 <h2>Gestion du questionnaire</h2>
@@ -196,6 +196,18 @@
         <div class="modal_body">
             <div class="modal__form">
                 <?= $addQuestionForm ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="gestion">
+        <div class="gestion__top">
+            <div class="gestion__top--title">
+                <h2>Gestion des réponses</h2>
+                <div class="gestion_button">
+                    <span>Vous pouvez exporter les données.</span>
+                    <a href="<?= $adminRoot; ?>/exportCSV">Exporter les réponses</a>
+                </div>
             </div>
         </div>
     </div>

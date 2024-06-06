@@ -1,5 +1,5 @@
-<div id="popup" class="popup">
-    <div class="popup-content">
+<div id="popup" class="popup" style="z-index: 100;">
+    <div class="popup-content" >
         <span class="close-btn" id="closePopupBtn">&times;</span>
         <div id="captcha-container">
             <form id="captcha-container" method="POST">
