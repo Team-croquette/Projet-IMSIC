@@ -17,9 +17,9 @@ class QuestionModel extends ModelCore{
         $result = $query->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            /*if (strlen($row['libelle']) > 18) {
+            if (strlen($row['libelle']) > 18) {
                 $row['libelle'] = substr($row['libelle'], 0, 18) . '[...]';
-            }*/
+            }
             $questions[] = $row;
         }
 
@@ -345,39 +345,3 @@ class QuestionModel extends ModelCore{
         return $this->executeInsertQuery($request, $bind, $sqlParams);
     }
 }
-
-
-
-// [
-//     {
-//         "ID": 38,
-//         "ID_QUESTION": 41,
-//         "CONTENU": "Je cherche une carte d'identité dans le portefeuille dans l'optique de le rendre à son propriétaire.",
-//         "IMG": null,
-//         "IMG_LABEL": null
-//     },
-//     {
-//         "ID": 39,
-//         "ID_QUESTION": 41,
-//         "CONTENU": "Prendre le portefeuille et le garder.",
-//         "IMG": null,
-//         "IMG_LABEL": null
-//     },
-//     {
-//         "ID": 40,
-//         "ID_QUESTION": 41,
-//         "CONTENU": "Donner le portefeuille à la police.",
-//         "IMG": null,
-//         "IMG_LABEL": null
-//     },
-//     {
-//         "ID": 41,
-//         "ID_QUESTION": 41,
-//         "CONTENU": "Prendre l'argent et jeter le portefeuille.",
-//         "IMG": null,
-//         "IMG_LABEL": null
-//     }
-// ]
-
-
-

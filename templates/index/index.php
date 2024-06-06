@@ -10,6 +10,7 @@
 </head>
 <body>
 <?php require_once $templatesRoot . 'header.php'; ?>
+<?= $info ?>
 
 <div class="content home">
     <!-- Sub Header -->
