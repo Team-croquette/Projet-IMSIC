@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= $siteRoot ?>assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="../assets/img/icon_question_mark.ico">
-    <title>Votre titre</title>
+    <title>IMSIC Questionnaire</title>
 </head>
 <body>
 
