@@ -51,7 +51,7 @@ class QuestionnaireController extends ControllerCore
             //$img = $this->getImgFromBlob($retourBD['IMG'], 'imgQuest1');
 
             $htmlQuestion .= '
-            <img id="img2Question" src= "data:image/*;base64,'.$retourBD['IMG'].'"
+            <img id="img2Question" class="thumbnail" src= "data:image/*;base64,'.$retourBD['IMG'].'"
                 alt="' . $retourBD['IMG_DESC'].'"/>';
         }
 
@@ -88,11 +88,11 @@ class QuestionnaireController extends ControllerCore
                 $htmlReponses .= '
                 <form action="../questionnaire/" method="post">
                     <div class="slider-container">
-                        <label for="slider">Sélectionnez une valeur :</label>
+                        <label for="slider">Sélectionnez une valeur :</label><br><br>
                         <input type="range" id="slider" name="sliderValue" min="0" max="' . $retourBD['maxSlider'] . '" value="' . round($retourBD['maxSlider']/2) . '" class="slider">
                         <span id="sliderValeur">' . round($retourBD['maxSlider']/2) . '</span>
                     </div>
-                    <input type="submit" value="Valider">
+                    <input type="submit" class="button-valid" value="Valider">
                 </form>
 
                 <script>
@@ -108,43 +108,43 @@ class QuestionnaireController extends ControllerCore
             case 1:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label for="champRep">Entrez une votre reponse :</label>
-                        <input type="text" id="champRep" name="champRep" required>
-                        <input type="submit" value="Valider">
+                        <label for="champRep">Entrez une votre reponse :</label><br><br>
+                        <textarea id="champRep" name="champRep" required></textarea>
+                        <input type="submit" class="button-valid" value="Valider">
                     </form>';
                 break;
             case 2:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label> Choix possibles :</label>';
+                        <label> Choix possibles :</label><br>';
 
                 $i = 0;
                 foreach ($retourBD['contenuReps'] as $row) {
                     //var_dump($row);
                     $htmlReponses .= '
                     <div class="reponse">
-                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="">
+                        <input type="checkbox" class="questionnaire-checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="">
                         <label for="rep' . $i . '">' . $row['CONTENU'] . '</label>
-                    </div>';
+                    </div><br>';
                     ++$i;
                 }
 
                 $htmlReponses .= '    
-                    <input type="submit" value="Valider">
+                    <input type="submit" class="button-valid" value="Valider">
                 </form>';
                 break;
             case 3:
                 $htmlReponses .= '
                     <form action="../questionnaire/" method="post">
-                        <label>Choix possibles :</label>';
+                        <label>Choix possibles :</label><br>';
 
                 $i = 0;
                 foreach ($retourBD['imgReps'] as $row) {
                     $htmlReponses .= '
                     <div class="reponse">
-                        <input type="checkbox" id="rep' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="">
-                        <label for="rep' . $i . '">' .
-                        '<img id="img' . $i . 'Rep" src= "data:image/*;base64,'.$row['IMG'].'"
+                        <input type="checkbox" id="repImg' . $i . '" name="selectedOptions[' . $row['ID'] . ']" value="">
+                        <label for="repImg' . $i . '">' .
+                        '<img id="img' . $i . 'Rep" src= "data:image/*;base64,'.$row['IMG'].'" class="thumbnail"
                             alt="' . $row['IMG_LABEL'].'"/>' .
                         '</label>
                     </div>';
@@ -152,7 +152,7 @@ class QuestionnaireController extends ControllerCore
                 }
 
                 $htmlReponses .= '    
-                    <input type="submit" value="Valider">
+                    <input type="submit" class="button-valid" value="Valider">
                 </form>';
                 break;
         }
