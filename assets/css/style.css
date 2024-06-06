@@ -335,6 +335,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        padding-top: 5px;
 
         li {
             display: flex;
@@ -348,7 +349,7 @@ body {
                 align-items: center;
             }
 
-            a {
+            a, .updateQuestion {
                 background-color: var(--black);
                 color: var(--white);
                 width: 8rem;
@@ -365,6 +366,13 @@ body {
                     width: 2rem;
                     height: 2rem;
                 }
+            }
+
+            .updateQuestion {
+                background-color: var(--white);
+                color: var(--black);
+                border: 2px solid var(--black);
+                margin-left: 10px;
             }
         }
     }
