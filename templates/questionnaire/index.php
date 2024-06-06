@@ -40,12 +40,21 @@
 <!-- End Sub Header -->
 
 <!-- Body -->
-<div id="content">
-    <div class="title-question" name="test">
-        <?php echo $question; ?>
+<div class="home-content">
+    <div class="home-content__left">
+        <div class="top-left">
+            <img src="<?= $siteRoot; ?>assets/img/blue-star.png" class="left-star" alt="white-star">
+        </div>
+        <div class="bot-left">
+            <div class="bot"></div>
+        </div>
     </div>
-    <div name="zer"><?php echo $reponses; ?></div>
+    <div class="home-content__right">
+        <?php echo $question; ?>
+        <?php echo $reponses; ?>
+    </div>
 </div>
+
 <div id="void"></div>
 <!-- Footer -->
 <?php require $footer; ?>
