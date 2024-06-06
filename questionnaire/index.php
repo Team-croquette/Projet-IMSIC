@@ -16,8 +16,6 @@ foreach(glob('../modeles/*.php') as $fileName){
 
 $resultMod = new ResultatModel();
 $questMod = new QuestionnaireModel();
-//dump($_SESSION);
-//var_dump($_POST);
 if (isset($_SESSION["conditions-generales"]) AND isset($_SESSION["VerifCapcha"])){
     if ($_SESSION["conditions-generales"] AND $_SESSION["VerifCapcha"]){
         if(isset($_SESSION['VerifIp'])) {
@@ -66,13 +64,13 @@ if (isset($_SESSION["conditions-generales"]) AND isset($_SESSION["VerifCapcha"])
         }
         else
         {
-            //var_dump('init');
             $secuIpCont = ControllerCore::getInstanceByName('SecuIp');
             $secuIpMod = new SecuIpModel();
             if ($secuIpMod->isIpDesac($secuIpCont->getIp())) {
                 $doQuest = true;
             } else {
                 $doQuest = !$secuIpCont->run(); //resultat de SecuIpController->run() est true si l'ip est deja trop utilisé
+                $_SESSION['info'] = $secuIpCont->getInfo();
             }
 
             if ($doQuest) {
@@ -86,6 +84,7 @@ if (isset($_SESSION["conditions-generales"]) AND isset($_SESSION["VerifCapcha"])
                 $controller = ControllerCore::getInstanceByName(basename(__DIR__));
                 $controller->run();
             } else {
+                $_SESSION['VerifIp'] = false;
                 header('Location: ../');
             }
         }

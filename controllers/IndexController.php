@@ -19,26 +19,30 @@ class IndexController extends ControllerCore
 
     private function getTemplateVariables():array
     {
-        $secuIpCont = new SecuIpController();
-        $secuIpMod = new SecuIpModel();
-        if (! $secuIpMod->isIpDesac($secuIpCont->getIp())) {
-            $result = $secuIpCont->run();
-            $info = '<script type="text/javascript">window.alert("'. $secuIpCont->getInfo() .'");</script>';
-
-            if ($result) {
-                $resultSecuIp = 'class="disabled"';
-            } else {
+        if (isset($_SESSION['VerifIp'])) {
+            if(!$_SESSION['VerifIp']){
+                $info = '<script type="text/javascript">window.alert("'. $_SESSION['info'] .'");</script>';
+    
+                $header = SITE_PATH . '/templates/header.php';
+                $footer = SITE_PATH . '/templates/footer.php';
+                return [
+                    'header' => $header,
+                    'footer' => $footer,
+                    'info' => $info,
+                ];
+            }else {
+                $header = SITE_PATH . '/templates/header.php';
+                $footer = SITE_PATH . '/templates/footer.php';
                 $resultSecuIp = 'class="enabled"';
+                $info = '';
+                return [
+                    'header' => $header,
+                    'footer' => $footer,
+                    'resultSecuIp' => $resultSecuIp,
+                    'info' => $info,
+                ];
             }
-
-            $header = SITE_PATH . '/templates/header.php';
-            $footer = SITE_PATH . '/templates/footer.php';
-            return [
-                'header' => $header,
-                'footer' => $footer,
-                'resultSecuIp' => $resultSecuIp,
-                'info' => $info,
-            ];
+            
         } else {
             $header = SITE_PATH . '/templates/header.php';
             $footer = SITE_PATH . '/templates/footer.php';
