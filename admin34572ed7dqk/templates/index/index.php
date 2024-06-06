@@ -11,6 +11,7 @@
     <link rel="icon" type="image/x-icon" href="./assets/img/icon_question_mark.ico">
     <script src="<?= $adminRoot; ?>/assets/scripts/confirm-delete.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript"> var adminRoot = '<?= $adminRoot; ?>'; </script>
 </head>
 
 <body>
@@ -163,7 +164,7 @@
                 <h2>Gestion du questionnaire</h2>
                 <div class="gestion_button">
                     <span>Vous pouvez ajouter ou supprimer des questions.</span>
-                    <button class="showModal" data-form-name="addQuestion">Ajouter une question</button>
+                    <button class="showModal showModalQuestion" data-form-name="addQuestion">Ajouter une question</button>
                 </div>
             </div>
 
@@ -185,6 +186,7 @@
                     <li>
                         <span><?= $question['libelle'] ?></span>
                         <a href="<?= $adminRoot ?>/question/?action=remove&id=<?= $question['id'] ?>"><img class="trash" src="<?= $siteRoot; ?>assets/img/Empty_Trash.png" />Supprimer</a>
+                        <a data-form-name="addQuestion" data-id="<?= $question['id'] ?>" class="showModal updateQuestion"><img class="update" src="<?= $siteRoot; ?>assets/img/pen.png" />Modifier</a>
                     </li>
                 <?php } ?>
             </ul>

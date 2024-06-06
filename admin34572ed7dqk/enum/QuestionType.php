@@ -29,4 +29,18 @@ enum QuestionTypeEnum: string{
             default => null,
         };
     }
+
+    public function updateQuestion($params): void{
+        if (!isset($params['libelle']) || $params['libelle'] == '') {
+            throw new Exception('La question ne peut pas être vide.');
+        }
+
+        match ($this->value) {
+            'freeText' => (new QuestionModel())->updateFreeTextQuestion($params),
+            'slider' => (new QuestionModel())->updateSliderQuestion($params),
+            'multiImage' => (new QuestionModel())->updateMultiImageQuestion($params),
+            'textChoice' => (new QuestionModel())->updateTextChoiceQuestion($params),
+            default => null,
+        };
+    }
 }

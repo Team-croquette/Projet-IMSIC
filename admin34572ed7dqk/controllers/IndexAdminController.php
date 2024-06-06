@@ -98,7 +98,12 @@ class IndexAdminController extends AdminControllerCore{
                     new FormInput('choiseText[2]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Ecrire la réponse à choisir ici']),
                     new FormInput('choiseText[3]','', InputTypeEnum::TEXT,false, '', ['placeholder' => 'Ecrire la réponse à choisir ici']),
                 ]
-            ]);
+            ])
+            ->add('response[0]','',InputTypeEnum::HIDDEN)
+            ->add('response[1]','',InputTypeEnum::HIDDEN)
+            ->add('response[2]','',InputTypeEnum::HIDDEN)
+            ->add('response[3]','',InputTypeEnum::HIDDEN)
+            ->add('id','',InputTypeEnum::HIDDEN);
 
         return $formBuilder->renderForm();
     }

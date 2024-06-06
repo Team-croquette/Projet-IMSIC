@@ -44,9 +44,10 @@ class QuestionAdminController extends AdminControllerCore
     {
         switch ($params['action']) {
             case 'remove':
+
                 (new QuestionModel())->removeQuestion($params['id']);
                 break;
-            case 'add':              
+            case 'add':    
                 if (!isset($params['questionType'])) {
                     $this->errors[] = 'Le type de question doit être sélectionné.';
                     break;
@@ -57,6 +58,20 @@ class QuestionAdminController extends AdminControllerCore
                 }
                 QuestionTypeEnum::tryFrom($params['questionType'])->addNewQuestion($params);
                 break;
-        }
+            case 'getQuestion' :
+                echo json_encode((new QuestionModel())->getQuestion($params['id']));
+                die;
+            case 'update' :
+                if (!isset($params['questionType'])) {
+                    $this->errors[] = 'Le type de question doit être sélectionné.';
+                    break;
+                }
+                if ($params['libelle'] == '') {
+                    $this->errors[] = 'La question ne peut pas être vide.';
+                    break;
+                }
+                QuestionTypeEnum::tryFrom($params['questionType'])->updateQuestion($params);
+                break;
+            }
     }
 }
